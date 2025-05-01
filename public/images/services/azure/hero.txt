@@ -1,0 +1,2 @@
+Placeholder for Azure hero image.
+Replace this file with an actual image file named hero.jpg or hero.png.

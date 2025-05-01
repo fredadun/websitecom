@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Study Image Generator</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1 {
+      color: #0070f3;
+      margin-bottom: 20px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .canvas-container {
+      border: 1px solid #eaeaea;
+      border-radius: 8px;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    canvas {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    select, input, button {
+      padding: 8px 12px;
+      border-radius: 4px;
+      border: 1px solid #d1d1d1;
+      font-size: 16px;
+    }
+    button {
+      background-color: #0070f3;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: #0060df;
+    }
+    .instructions {
+      background-color: #f0f7ff;
+      border-left: 4px solid #0070f3;
+      padding: 15px;
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Case Study Image Generator</h1>
+  
+  <div class="instructions">
+    <p>This tool helps you create images for case studies. Select a case study, customize the image if needed, and download it.</p>
+    <p>Required dimensions: 800×600 pixels</p>
+  </div>
+  
+  <div class="container">
+    <div class="controls">
+      <label for="case-study-select">Select Case Study:</label>
+      <select id="case-study-select">
+        <option value="retail-transformation">Retail Transformation</option>
+        <option value="nationwide-bank">Nationwide Bank Sales Module</option>
+        <option value="centrica-dyno">Centrica Dyno Field Service</option>
+        <option value="financial-services">Financial Services Modernization</option>
+        <option value="ecobank-global">Ecobank Global Banking Platform</option>
+        <option value="equinor-global">Equinor Global Digital Transformation</option>
+        <option value="ai-copilot">AI & Copilot Case Study</option>
+        <option value="manufacturing-transformation">Manufacturing Transformation</option>
+      </select>
+      
+      <label for="industry-select">Industry Icon:</label>
+      <select id="industry-select">
+        <option value="retail">Retail</option>
+        <option value="banking">Banking & Finance</option>
+        <option value="energy">Energy & Utilities</option>
+        <option value="technology">Technology</option>
+        <option value="manufacturing">Manufacturing</option>
+        <option value="healthcare">Healthcare</option>
+      </select>
+      
+      <label for="bg-color">Background Color:</label>
+      <input type="color" id="bg-color" value="#0070f3">
+      
+      <label for="accent-color">Accent Color:</label>
+      <input type="color" id="accent-color" value="#ffffff">
+      
+      <button id="generate-btn">Generate Image</button>
+      <button id="download-btn">Download Image</button>
+    </div>
+    
+    <div class="canvas-container">
+      <canvas id="canvas" width="800" height="600"></canvas>
+    </div>
+  </div>
+  
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const caseStudySelect = document.getElementById('case-study-select');
+    const industrySelect = document.getElementById('industry-select');
+    const bgColorInput = document.getElementById('bg-color');
+    const accentColorInput = document.getElementById('accent-color');
+    const generateBtn = document.getElementById('generate-btn');
+    const downloadBtn = document.getElementById('download-btn');
+    
+    // Industry icons (simplified representations)
+    const industryIcons = {
+      'retail': drawRetailIcon,
+      'banking': drawBankingIcon,
+      'energy': drawEnergyIcon,
+      'technology': drawTechnologyIcon,
+      'manufacturing': drawManufacturingIcon,
+      'healthcare': drawHealthcareIcon
+    };
+    
+    // Generate initial image
+    generateImage();
+    
+    // Event listeners
+    caseStudySelect.addEventListener('change', generateImage);
+    industrySelect.addEventListener('change', generateImage);
+    bgColorInput.addEventListener('change', generateImage);
+    accentColorInput.addEventListener('change', generateImage);
+    generateBtn.addEventListener('click', generateImage);
+    downloadBtn.addEventListener('click', downloadImage);
+    
+    function generateImage() {
+      const caseStudy = caseStudySelect.value;
+      const industry = industrySelect.value;
+      const bgColor = bgColorInput.value;
+      const accentColor = accentColorInput.value;
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw background
+      ctx.fillStyle = bgColor;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Add abstract pattern
+      drawAbstractPattern(bgColor);
+      
+      // Draw industry icon
+      if (industryIcons[industry]) {
+        industryIcons[industry](accentColor);
+      }
+      
+      // Add subtle vignette effect
+      const gradient = ctx.createRadialGradient(
+        canvas.width / 2, canvas.height / 2, canvas.width / 3,
+        canvas.width / 2, canvas.height / 2, canvas.width
+      );
+      gradient.addColorStop(0, 'rgba(0,0,0,0)');
+      gradient.addColorStop(1, 'rgba(0,0,0,0.3)');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    
+    function drawAbstractPattern(bgColor) {
+      ctx.fillStyle = adjustColor(bgColor, 0.1);
+      
+      // Draw abstract shapes
+      for (let i = 0; i < 15; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const size = 30 + Math.random() * 100;
+        
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(Math.random() * Math.PI);
+        ctx.globalAlpha = 0.1 + Math.random() * 0.1;
+        ctx.fillRect(-size/2, -size/2, size, size);
+        ctx.restore();
+      }
+    }
+    
+    // Industry icon drawing functions
+    function drawRetailIcon(color) {
+      ctx.fillStyle = color;
+      ctx.globalAlpha = 0.2;
+      
+      // Stylized shopping bag
+      const centerX = 150;
+      const centerY = 300;
+      const width = 100;
+      const height = 120;
+      
+      ctx.beginPath();
+      ctx.moveTo(centerX - width/2, centerY - height/3);
+      ctx.lineTo(centerX - width/2, centerY + height/2);
+      ctx.lineTo(centerX + width/2, centerY + height/2);
+      ctx.lineTo(centerX + width/2, centerY - height/3);
+      ctx.closePath();
+      ctx.fill();
+      
+      // Bag handles
+      ctx.beginPath();
+      ctx.moveTo(centerX - width/3, centerY - height/3);
+      ctx.quadraticCurveTo(centerX - width/3, centerY - height/1.2, centerX, centerY - height/1.2);
+      ctx.quadraticCurveTo(centerX + width/3, centerY - height/1.2, centerX + width/3, centerY - height/3);
+      ctx.stroke();
+      
+      ctx.globalAlpha = 1;
+    }
+    
+    function drawBankingIcon(color) {
+      ctx.fillStyle = color;
+      ctx.globalAlpha = 0.2;
+      
+      // Stylized bank/finance icon
+      const centerX = 150;
+      const centerY = 300;
+      const width = 120;
+      const height = 80;
+      
+      // Bank building columns
+      for (let i = 0; i < 5; i++) {
+        const x = centerX - width/2 + i * width/4;
+        ctx.fillRect(x - 8, centerY - height/2, 16, height);
+      }
+      
+      // Roof
+      ctx.beginPath();
+      ctx.moveTo(centerX - width/2 - 20, centerY - height/2);
+      ctx.lineTo(centerX + width/2 + 20, centerY - height/2);
+      ctx.lineTo(centerX, centerY - height - 20);
+      ctx.closePath();
+      ctx.fill();
+      
+      // Base
+      ctx.fillRect(centerX - width/2 - 20, centerY + height/2, width + 40, 20);
+      
+      ctx.globalAlpha = 1;
+    }
+    
+    function drawEnergyIcon(color) {
+      ctx.fillStyle = color;
+      ctx.globalAlpha = 0.2;
+      
+      // Stylized energy icon
+      const centerX = 150;
+      const centerY = 300;
+      
+      // Lightning bolt
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY - 80);
+      ctx.lineTo(centerX - 30, centerY);
+      ctx.lineTo(centerX, centerY - 10);
+      ctx.lineTo(centerX, centerY + 80);
+      ctx.lineTo(centerX + 30, centerY);
+      ctx.lineTo(centerX, centerY - 10);
+      ctx.closePath();
+      ctx.fill();
+      
+      ctx.globalAlpha = 1;
+    }
+    
+    function drawTechnologyIcon(color) {
+      ctx.fillStyle = color;
+      ctx.globalAlpha = 0.2;
+      
+      // Stylized technology icon
+      const centerX = 150;
+      const centerY = 300;
+      const radius = 60;
+      
+      // Circuit board pattern
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+      ctx.fill();
+      
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 3;
+      
+      // Draw circuit lines
+      for (let i = 0; i < 8; i++) {
+        const angle = (i / 8) * Math.PI * 2;
+        const x1 = centerX + Math.cos(angle) * radius;
+        const y1 = centerY + Math.sin(angle) * radius;
+        const x2 = centerX + Math.cos(angle) * (radius + 40);
+        const y2 = centerY + Math.sin(angle) * (radius + 40);
+        
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.stroke();
+        
+        // Add small circle at the end
+        ctx.beginPath();
+        ctx.arc(x2, y2, 5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      
+      ctx.globalAlpha = 1;
+    }
+    
+    function drawManufacturingIcon(color) {
+      ctx.fillStyle = color;
+      ctx.globalAlpha = 0.2;
+      
+      // Stylized manufacturing/gear icon
+      const centerX = 150;
+      const centerY = 300;
+      const outerRadius = 70;
+      const innerRadius = 50;
+      const teeth = 12;
+      
+      ctx.beginPath();
+      for (let i = 0; i < teeth; i++) {
+        const angle = (i / teeth) * Math.PI * 2;
+        const nextAngle = ((i + 1) / teeth) * Math.PI * 2;
+        const midAngle = (angle + nextAngle) / 2;
+        
+        const outerX = centerX + Math.cos(angle) * outerRadius;
+        const outerY = centerY + Math.sin(angle) * outerRadius;
+        
+        const midOuterX = centerX + Math.cos(midAngle) * (outerRadius + 15);
+        const midOuterY = centerY + Math.sin(midAngle) * (outerRadius + 15);
+        
+        const nextOuterX = centerX + Math.cos(nextAngle) * outerRadius;
+        const nextOuterY = centerY + Math.sin(nextAngle) * outerRadius;
+        
+        if (i === 0) {
+          ctx.moveTo(outerX, outerY);
+        }
+        
+        ctx.lineTo(midOuterX, midOuterY);
+        ctx.lineTo(nextOuterX, nextOuterY);
+      }
+      
+      ctx.closePath();
+      ctx.fill();
+      
+      // Inner circle
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, innerRadius, 0, Math.PI * 2);
+      ctx.fillStyle = adjustColor(bgColorInput.value, 0.2);
+      ctx.fill();
+      
+      ctx.globalAlpha = 1;
+    }
+    
+    function drawHealthcareIcon(color) {
+      ctx.fillStyle = color;
+      ctx.globalAlpha = 0.2;
+      
+      // Stylized healthcare/medical cross
+      const centerX = 150;
+      const centerY = 300;
+      const size = 100;
+      
+      // Medical cross
+      ctx.fillRect(centerX - size/6, centerY - size/2, size/3, size);
+      ctx.fillRect(centerX - size/2, centerY - size/6, size, size/3);
+      
+      ctx.globalAlpha = 1;
+    }
+    
+    function downloadImage() {
+      const caseStudy = caseStudySelect.value;
+      const link = document.createElement('a');
+      link.download = `${caseStudy}-case-study.jpg`;
+      link.href = canvas.toDataURL('image/jpeg', 0.8);
+      link.click();
+    }
+    
+    function adjustColor(color, amount) {
+      // Convert hex to RGB
+      let r = parseInt(color.substr(1, 2), 16);
+      let g = parseInt(color.substr(3, 2), 16);
+      let b = parseInt(color.substr(5, 2), 16);
+      
+      // Adjust color
+      if (amount > 0) {
+        r = Math.min(255, r + (255 - r) * amount);
+        g = Math.min(255, g + (255 - g) * amount);
+        b = Math.min(255, b + (255 - b) * amount);
+      } else {
+        r = Math.max(0, r + r * amount);
+        g = Math.max(0, g + g * amount);
+        b = Math.max(0, b + b * amount);
+      }
+      
+      // Convert back to hex
+      return `#${Math.round(r).toString(16).padStart(2, '0')}${Math.round(g).toString(16).padStart(2, '0')}${Math.round(b).toString(16).padStart(2, '0')}`;
+    }
+  </script>
+</body>
+</html>

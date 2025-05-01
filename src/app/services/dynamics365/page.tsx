@@ -84,8 +84,8 @@ export default function Dynamics365Page() {
     <Layout>
       <ServiceLayout 
       title="Enterprise-Grade Dynamics 365 Solutions" 
-      description="Comprehensive implementation and architecture services for Microsoft Dynamics 365, tailored to your business needs"
-      heroImage="/images/services/dynamics365-hero.jpg"
+      description="Comprehensive implementation and architecture services tailored to your unique business requirements"
+      heroImage="/images/services/dynamics365/hero.jpg"
     >
       {/* Capabilities Section */}
       <section className="mb-20">

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Image Placeholder Generator</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1 {
+      color: #0070f3;
+      margin-bottom: 20px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .canvas-container {
+      border: 1px solid #eaeaea;
+      border-radius: 8px;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    canvas {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    select, button {
+      padding: 8px 12px;
+      border-radius: 4px;
+      border: 1px solid #d1d1d1;
+      font-size: 16px;
+    }
+    button {
+      background-color: #0070f3;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: #0060df;
+    }
+    .instructions {
+      background-color: #f0f7ff;
+      border-left: 4px solid #0070f3;
+      padding: 15px;
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Service Image Placeholder Generator</h1>
+  
+  <div class="instructions">
+    <p>This tool helps you create placeholder images for the service pages. Select a service, customize the image if needed, and download it. Then place the downloaded image in the appropriate service directory.</p>
+    <p>Required dimensions: 1200×600 pixels</p>
+  </div>
+  
+  <div class="container">
+    <div class="controls">
+      <label for="service-select">Select Service:</label>
+      <select id="service-select">
+        <option value="dynamics365">Dynamics 365 Implementation & Architecture</option>
+        <option value="azure">Azure Cloud Architecture & Integration</option>
+        <option value="power-platform">Power Platform Custom Development</option>
+        <option value="ai-copilot">AI & Copilot Integration</option>
+        <option value="integration">Integration Architecture</option>
+        <option value="transformation">Digital Transformation</option>
+      </select>
+      
+      <label for="bg-color">Background Color:</label>
+      <input type="color" id="bg-color" value="#0070f3">
+      
+      <label for="text-color">Text Color:</label>
+      <input type="color" id="text-color" value="#ffffff">
+      
+      <button id="generate-btn">Generate Image</button>
+      <button id="download-btn">Download Image</button>
+    </div>
+    
+    <div class="canvas-container">
+      <canvas id="canvas" width="1200" height="600"></canvas>
+    </div>
+  </div>
+  
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const serviceSelect = document.getElementById('service-select');
+    const bgColorInput = document.getElementById('bg-color');
+    const textColorInput = document.getElementById('text-color');
+    const generateBtn = document.getElementById('generate-btn');
+    const downloadBtn = document.getElementById('download-btn');
+    
+    // Generate initial image
+    generateImage();
+    
+    // Event listeners
+    generateBtn.addEventListener('click', generateImage);
+    downloadBtn.addEventListener('click', downloadImage);
+    
+    function generateImage() {
+      const service = serviceSelect.value;
+      const bgColor = bgColorInput.value;
+      const textColor = textColorInput.value;
+      const serviceName = serviceSelect.options[serviceSelect.selectedIndex].text;
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw background
+      ctx.fillStyle = bgColor;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Add pattern
+      ctx.fillStyle = adjustColor(bgColor, 0.1);
+      for (let i = 0; i < canvas.width; i += 40) {
+        for (let j = 0; j < canvas.height; j += 40) {
+          ctx.beginPath();
+          ctx.arc(i, j, 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+      
+      // Draw service name
+      ctx.fillStyle = textColor;
+      ctx.font = 'bold 48px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      
+      // Handle multi-line text
+      const words = serviceName.split(' ');
+      const lines = [];
+      let currentLine = words[0];
+      
+      for (let i = 1; i < words.length; i++) {
+        const testLine = currentLine + ' ' + words[i];
+        const metrics = ctx.measureText(testLine);
+        
+        if (metrics.width > canvas.width - 100) {
+          lines.push(currentLine);
+          currentLine = words[i];
+        } else {
+          currentLine = testLine;
+        }
+      }
+      lines.push(currentLine);
+      
+      // Draw each line
+      const lineHeight = 60;
+      const startY = canvas.height / 2 - (lines.length - 1) * lineHeight / 2;
+      
+      lines.forEach((line, index) => {
+        ctx.fillText(line, canvas.width / 2, startY + index * lineHeight);
+      });
+      
+      // Add "Placeholder" text
+      ctx.font = '24px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+      ctx.fillText('Placeholder Image - Replace with actual content', canvas.width / 2, canvas.height - 50);
+      
+      // Add border
+      ctx.strokeStyle = adjustColor(bgColor, -0.2);
+      ctx.lineWidth = 10;
+      ctx.strokeRect(5, 5, canvas.width - 10, canvas.height - 10);
+    }
+    
+    function downloadImage() {
+      const service = serviceSelect.value;
+      const link = document.createElement('a');
+      link.download = `${service}-hero.jpg`;
+      link.href = canvas.toDataURL('image/jpeg', 0.8);
+      link.click();
+    }
+    
+    function adjustColor(color, amount) {
+      // Convert hex to RGB
+      let r = parseInt(color.substr(1, 2), 16);
+      let g = parseInt(color.substr(3, 2), 16);
+      let b = parseInt(color.substr(5, 2), 16);
+      
+      // Adjust color
+      if (amount > 0) {
+        r = Math.min(255, r + (255 - r) * amount);
+        g = Math.min(255, g + (255 - g) * amount);
+        b = Math.min(255, b + (255 - b) * amount);
+      } else {
+        r = Math.max(0, r + r * amount);
+        g = Math.max(0, g + g * amount);
+        b = Math.max(0, b + b * amount);
+      }
+      
+      // Convert back to hex
+      return `#${Math.round(r).toString(16).padStart(2, '0')}${Math.round(g).toString(16).padStart(2, '0')}${Math.round(b).toString(16).padStart(2, '0')}`;
+    }
+  </script>
+</body>
+</html>

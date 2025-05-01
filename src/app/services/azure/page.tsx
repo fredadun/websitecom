@@ -113,25 +113,25 @@ export default function AzurePage() {
     <Layout>
       <ServiceLayout 
       title="Azure Cloud Architecture & Integration" 
-      description="Strategic cloud solutions leveraging Microsoft Azure to drive innovation, scalability, and business agility"
-      heroImage="/images/services/azure-hero.jpg"
+      description="Strategic cloud solutions that drive innovation, scalability, and business agility for your organization"
+      heroImage="/images/services/azure/hero.jpg"
     >
       {/* Capabilities Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">
             Capabilities
           </h2>
         </AnimatedElement>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {capabilities.map((capability, index) => (
             <AnimatedElement key={index} delay={index * 0.1}>
-              <div className="p-6 bg-slate-50 rounded-xl h-full">
-                <div className="text-blue-600 mb-4">{capability.icon}</div>
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+              <div className="p-6 bg-slate-50 dark:bg-slate-800 rounded-xl h-full">
+                <div className="text-blue-600 dark:text-blue-500 mb-4">{capability.icon}</div>
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
                   {capability.title}
                 </h3>
-                <p className="text-slate-600">{capability.description}</p>
+                <p className="text-slate-600 dark:text-slate-300 mb-6">{capability.description}</p>
               </div>
             </AnimatedElement>
           ))}
@@ -141,13 +141,13 @@ export default function AzurePage() {
       {/* Services Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">Services</h2>
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">Services</h2>
         </AnimatedElement>
         <div className="space-y-12">
           {services.map((service, index) => (
             <AnimatedElement key={index} delay={index * 0.1}>
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <h3 className="text-xl font-semibold text-slate-900 mb-6">
+              <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8">
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-6">
                   {service.title}
                 </h3>
                 <ul className="space-y-3">
@@ -156,7 +156,7 @@ export default function AzurePage() {
                       <div className="flex-shrink-0 mt-1">
                         <ZapIcon className="h-5 w-5 text-blue-600" />
                       </div>
-                      <span className="ml-3 text-slate-600">{item}</span>
+                      <span className="text-sm text-slate-700 dark:text-slate-300">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -169,14 +169,14 @@ export default function AzurePage() {
       {/* Technologies Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">
             Azure Technologies
           </h2>
         </AnimatedElement>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {technologies.map((tech, index) => (
             <AnimatedElement key={index} delay={index * 0.05}>
-              <div className="p-4 bg-slate-50 rounded-lg text-center text-slate-700 h-full flex items-center justify-center">
+              <div className="flex items-center p-2 bg-slate-50 dark:bg-slate-700 rounded-lg text-center text-slate-700 dark:text-slate-200 h-full flex items-center justify-center">
                 {tech}
               </div>
             </AnimatedElement>
@@ -187,7 +187,7 @@ export default function AzurePage() {
       {/* Case Study Highlight Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">
             Success Stories
           </h2>
         </AnimatedElement>
@@ -211,19 +211,19 @@ export default function AzurePage() {
                   Architected and implemented a secure, compliant Azure cloud environment for a financial services firm, reducing infrastructure costs by 40% while improving performance and enabling rapid scaling during peak periods.
                 </p>
                 <div className="flex flex-wrap gap-4 mb-6">
-                  <div className="bg-white px-3 py-1 rounded-full text-sm text-slate-700">
+                  <div className="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 p-1 rounded-md mr-2">
                     Azure Kubernetes Service
                   </div>
-                  <div className="bg-white px-3 py-1 rounded-full text-sm text-slate-700">
+                  <div className="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 p-1 rounded-md mr-2">
                     Azure SQL
                   </div>
-                  <div className="bg-white px-3 py-1 rounded-full text-sm text-slate-700">
+                  <div className="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 p-1 rounded-md mr-2">
                     Azure Security Center
                   </div>
                 </div>
                 <Link 
                   href="/case-studies/financial-cloud-transformation" 
-                  className="inline-flex items-center text-blue-600 hover:text-blue-700"
+                  className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
                 >
                   Read case study
                   <ArrowRightIcon className="ml-2 h-4 w-4" />
@@ -237,16 +237,16 @@ export default function AzurePage() {
       {/* FAQ Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">FAQ</h2>
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">FAQ</h2>
         </AnimatedElement>
         <div className="space-y-6">
           {faqs.map((faq, index) => (
             <AnimatedElement key={index} delay={index * 0.1}>
-              <div className="bg-white border border-slate-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+              <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
                   {faq.question}
                 </h3>
-                <p className="text-slate-600">{faq.answer}</p>
+                <p className="text-slate-600 dark:text-slate-300 mb-6">{faq.answer}</p>
               </div>
             </AnimatedElement>
           ))}

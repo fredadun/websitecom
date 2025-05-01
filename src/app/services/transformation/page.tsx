@@ -135,25 +135,25 @@ export default function TransformationPage() {
     <Layout>
       <ServiceLayout 
       title="Digital Transformation" 
-      description="Strategic guidance and implementation expertise to transform your organization for the digital age"
-      heroImage="/images/services/transformation-hero.jpg"
+      description="Strategic guidance and implementation expertise to prepare your organization for success in the digital age"
+      heroImage="/images/services/transformation/hero.jpg"
     >
       {/* Capabilities Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">
             Capabilities
           </h2>
         </AnimatedElement>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {capabilities.map((capability, index) => (
             <AnimatedElement key={index} delay={index * 0.1}>
-              <div className="p-6 bg-slate-50 rounded-xl h-full">
-                <div className="text-blue-600 mb-4">{capability.icon}</div>
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+              <div className="p-6 bg-slate-50 dark:bg-slate-800 rounded-xl h-full">
+                <div className="text-blue-600 dark:text-blue-500 mb-4">{capability.icon}</div>
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
                   {capability.title}
                 </h3>
-                <p className="text-slate-600">{capability.description}</p>
+                <p className="text-slate-600 dark:text-slate-300">{capability.description}</p>
               </div>
             </AnimatedElement>
           ))}
@@ -163,16 +163,16 @@ export default function TransformationPage() {
       {/* Transformation Pillars Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">Transformation Pillars</h2>
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">Transformation Pillars</h2>
         </AnimatedElement>
         <div className="space-y-12">
           {pillars.map((pillar, index) => (
             <AnimatedElement key={index} delay={index * 0.1}>
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <h3 className="text-xl font-semibold text-slate-900 mb-2">
+              <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8">
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-6">
                   {pillar.title}
                 </h3>
-                <p className="text-slate-600 mb-6">{pillar.description}</p>
+                <p className="text-slate-600 dark:text-slate-300 mb-6">{pillar.description}</p>
                 <ul className="space-y-3">
                   {pillar.items.map((item, itemIndex) => (
                     <li key={itemIndex} className="flex items-start">
@@ -192,19 +192,19 @@ export default function TransformationPage() {
       {/* Methodology Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">
             Transformation Methodology
           </h2>
         </AnimatedElement>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {methodologies.map((methodology, index) => (
             <AnimatedElement key={index} delay={index * 0.1}>
-              <div className="bg-slate-50 p-6 rounded-xl text-center h-full flex flex-col">
-                <div className="bg-blue-100 text-blue-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-xl text-center h-full flex flex-col">
+                <div className="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
                   {methodology.icon}
                 </div>
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">{methodology.title}</h3>
-                <p className="text-slate-600 flex-grow">{methodology.description}</p>
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">{methodology.title}</h3>
+                <p className="text-slate-600 dark:text-slate-300 flex-grow">{methodology.description}</p>
               </div>
             </AnimatedElement>
           ))}
@@ -214,7 +214,7 @@ export default function TransformationPage() {
       {/* Case Study Highlight Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">
             Success Stories
           </h2>
         </AnimatedElement>
@@ -264,7 +264,7 @@ export default function TransformationPage() {
       {/* Benefits Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">
             Benefits of Digital Transformation
           </h2>
         </AnimatedElement>
@@ -387,16 +387,16 @@ export default function TransformationPage() {
       {/* FAQ Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">FAQ</h2>
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">FAQ</h2>
         </AnimatedElement>
         <div className="space-y-6">
           {faqs.map((faq, index) => (
             <AnimatedElement key={index} delay={index * 0.1}>
-              <div className="bg-white border border-slate-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+              <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
                   {faq.question}
                 </h3>
-                <p className="text-slate-600">{faq.answer}</p>
+                <p className="text-slate-600 dark:text-slate-300">{faq.answer}</p>
               </div>
             </AnimatedElement>
           ))}

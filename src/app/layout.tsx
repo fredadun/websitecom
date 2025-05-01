@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
+import "./font-weights.css";
 import "./theme.css";
 import { Providers } from "./providers";
 import StructuredData from "./structured-data";

@@ -24,7 +24,7 @@ export const Hero = () => {
             transition={{ duration: 0.5 }} 
             className="text-left"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold text-slate-900 dark:text-white mb-6">
               AI-Powered Microsoft
               <span className="text-blue-600 dark:text-blue-500"> Solutions Architect</span>
             </h1>

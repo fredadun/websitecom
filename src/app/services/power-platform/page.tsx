@@ -113,25 +113,25 @@ export default function PowerPlatformPage() {
     <Layout>
       <ServiceLayout 
       title="Power Platform Custom Development" 
-      description="Tailored Microsoft Power Platform solutions that automate processes, enhance productivity, and drive business innovation"
-      heroImage="/images/services/power-platform-hero.jpg"
+      description="Tailored solutions that automate processes, enhance productivity, and drive business innovation"
+      heroImage="/images/services/power-platform/hero.jpg"
     >
       {/* Capabilities Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">
             Capabilities
           </h2>
         </AnimatedElement>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {capabilities.map((capability, index) => (
             <AnimatedElement key={index} delay={index * 0.1}>
-              <div className="p-6 bg-slate-50 rounded-xl h-full">
-                <div className="text-blue-600 mb-4">{capability.icon}</div>
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+              <div className="p-6 bg-slate-50 dark:bg-slate-800 rounded-xl h-full">
+                <div className="text-blue-600 dark:text-blue-500 mb-4">{capability.icon}</div>
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
                   {capability.title}
                 </h3>
-                <p className="text-slate-600">{capability.description}</p>
+                <p className="text-slate-600 dark:text-slate-300">{capability.description}</p>
               </div>
             </AnimatedElement>
           ))}
@@ -141,13 +141,13 @@ export default function PowerPlatformPage() {
       {/* Services Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">Services</h2>
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">Services</h2>
         </AnimatedElement>
         <div className="space-y-12">
           {services.map((service, index) => (
             <AnimatedElement key={index} delay={index * 0.1}>
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <h3 className="text-xl font-semibold text-slate-900 mb-6">
+              <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8">
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-6">
                   {service.title}
                 </h3>
                 <ul className="space-y-3">
@@ -156,7 +156,7 @@ export default function PowerPlatformPage() {
                       <div className="flex-shrink-0 mt-1">
                         <CodeIcon className="h-5 w-5 text-blue-600" />
                       </div>
-                      <span className="ml-3 text-slate-600">{item}</span>
+                      <span className="text-sm text-slate-700 dark:text-slate-300">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -169,14 +169,14 @@ export default function PowerPlatformPage() {
       {/* Technologies Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">
             Technologies
           </h2>
         </AnimatedElement>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {technologies.map((tech, index) => (
             <AnimatedElement key={index} delay={index * 0.05}>
-              <div className="p-4 bg-slate-50 rounded-lg text-center text-slate-700 h-full flex items-center justify-center">
+              <div className="flex items-center p-2 bg-slate-50 dark:bg-slate-700 rounded-lg text-center text-slate-700 dark:text-slate-200 h-full flex items-center justify-center">
                 {tech}
               </div>
             </AnimatedElement>
@@ -187,7 +187,7 @@ export default function PowerPlatformPage() {
       {/* Case Study Highlight Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">
             Success Stories
           </h2>
         </AnimatedElement>
@@ -222,8 +222,8 @@ export default function PowerPlatformPage() {
                   </div>
                 </div>
                 <Link 
-                  href="/case-studies/healthcare-automation" 
-                  className="inline-flex items-center text-blue-600 hover:text-blue-700"
+                  href="#contact" 
+                  className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
                 >
                   Read case study
                   <ArrowRightIcon className="ml-2 h-4 w-4" />
@@ -237,16 +237,16 @@ export default function PowerPlatformPage() {
       {/* FAQ Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">FAQ</h2>
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">FAQ</h2>
         </AnimatedElement>
         <div className="space-y-6">
           {faqs.map((faq, index) => (
             <AnimatedElement key={index} delay={index * 0.1}>
-              <div className="bg-white border border-slate-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+              <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
                   {faq.question}
                 </h3>
-                <p className="text-slate-600">{faq.answer}</p>
+                <p className="text-slate-600 dark:text-slate-300">{faq.answer}</p>
               </div>
             </AnimatedElement>
           ))}
@@ -256,33 +256,33 @@ export default function PowerPlatformPage() {
       {/* Development Process Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">Development Process</h2>
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">Development Process</h2>
         </AnimatedElement>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <AnimatedElement delay={0.1}>
             <div className="bg-slate-50 p-6 rounded-xl text-center h-full flex flex-col">
-              <div className="bg-blue-100 text-blue-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">1</div>
+              <div className="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 p-1 rounded-md mr-2">1</div>
               <h3 className="text-lg font-semibold text-slate-900 mb-2">Discovery</h3>
               <p className="text-slate-600 flex-grow">Understanding your business processes, challenges, and objectives</p>
             </div>
           </AnimatedElement>
           <AnimatedElement delay={0.2}>
             <div className="bg-slate-50 p-6 rounded-xl text-center h-full flex flex-col">
-              <div className="bg-blue-100 text-blue-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">2</div>
+              <div className="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 p-1 rounded-md mr-2">2</div>
               <h3 className="text-lg font-semibold text-slate-900 mb-2">Design</h3>
               <p className="text-slate-600 flex-grow">Creating solution architecture and user experience designs</p>
             </div>
           </AnimatedElement>
           <AnimatedElement delay={0.3}>
             <div className="bg-slate-50 p-6 rounded-xl text-center h-full flex flex-col">
-              <div className="bg-blue-100 text-blue-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">3</div>
+              <div className="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 p-1 rounded-md mr-2">3</div>
               <h3 className="text-lg font-semibold text-slate-900 mb-2">Development</h3>
               <p className="text-slate-600 flex-grow">Building and configuring Power Platform components with iterative feedback</p>
             </div>
           </AnimatedElement>
           <AnimatedElement delay={0.4}>
             <div className="bg-slate-50 p-6 rounded-xl text-center h-full flex flex-col">
-              <div className="bg-blue-100 text-blue-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">4</div>
+              <div className="bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 p-1 rounded-md mr-2">4</div>
               <h3 className="text-lg font-semibold text-slate-900 mb-2">Deployment</h3>
               <p className="text-slate-600 flex-grow">Implementation, training, and ongoing support to ensure adoption</p>
             </div>

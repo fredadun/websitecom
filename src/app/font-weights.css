@@ -1,0 +1,36 @@
+/* Font weight adjustments */
+.font-bold {
+  font-weight: 600 !important; /* Reduce from 700 to 600 */
+}
+
+.font-semibold {
+  font-weight: 500 !important; /* Reduce from 600 to 500 */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500 !important;
+  letter-spacing: -0.01em;
+}
+
+/* Specific adjustments for headings */
+h1.text-4xl, h1.text-5xl, h1.text-6xl {
+  font-weight: 500 !important;
+  letter-spacing: -0.02em;
+}
+
+/* Make paragraph text slightly lighter */
+p {
+  font-weight: 400 !important;
+}
+
+/* Adjust navigation and buttons to be slightly lighter */
+nav a, button {
+  font-weight: 500 !important;
+}
+
+/* Make the overall font slightly thinner */
+body {
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

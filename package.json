@@ -21,7 +21,8 @@
     "rehype": "^13.0.2",
     "rehype-stringify": "^10.0.1",
     "remark": "^15.0.1",
-    "remark-html": "^16.0.1"
+    "remark-html": "^16.0.1",
+    "website": "file:"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

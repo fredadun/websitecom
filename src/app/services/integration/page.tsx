@@ -113,25 +113,25 @@ export default function IntegrationPage() {
     <Layout>
       <ServiceLayout 
       title="Integration Architecture" 
-      description="Strategic integration solutions that connect your enterprise systems, applications, and data for seamless operations"
-      heroImage="/images/services/integration-hero.jpg"
+      description="Connect your enterprise systems, applications, and data for seamless operations and improved efficiency"
+      heroImage="/images/services/integration/hero.jpg"
     >
       {/* Capabilities Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">
             Capabilities
           </h2>
         </AnimatedElement>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {capabilities.map((capability, index) => (
             <AnimatedElement key={index} delay={index * 0.1}>
-              <div className="p-6 bg-slate-50 rounded-xl h-full">
-                <div className="text-blue-600 mb-4">{capability.icon}</div>
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+              <div className="p-6 bg-slate-50 dark:bg-slate-800 rounded-xl h-full">
+                <div className="text-blue-600 dark:text-blue-500 mb-4">{capability.icon}</div>
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
                   {capability.title}
                 </h3>
-                <p className="text-slate-600">{capability.description}</p>
+                <p className="text-slate-600 dark:text-slate-300">{capability.description}</p>
               </div>
             </AnimatedElement>
           ))}
@@ -141,13 +141,13 @@ export default function IntegrationPage() {
       {/* Services Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">Services</h2>
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">Services</h2>
         </AnimatedElement>
         <div className="space-y-12">
           {services.map((service, index) => (
             <AnimatedElement key={index} delay={index * 0.1}>
-              <div className="bg-white border border-slate-200 rounded-xl p-8">
-                <h3 className="text-xl font-semibold text-slate-900 mb-6">
+              <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8">
+                <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-6">
                   {service.title}
                 </h3>
                 <ul className="space-y-3">
@@ -169,7 +169,7 @@ export default function IntegrationPage() {
       {/* Integration Patterns Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">
             Integration Patterns
           </h2>
         </AnimatedElement>
@@ -277,14 +277,14 @@ export default function IntegrationPage() {
       {/* Technologies Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">
             Technologies
           </h2>
         </AnimatedElement>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {technologies.map((tech, index) => (
             <AnimatedElement key={index} delay={index * 0.05}>
-              <div className="p-4 bg-slate-50 rounded-lg text-center text-slate-700 h-full flex items-center justify-center">
+              <div className="p-4 bg-slate-50 dark:bg-slate-700 rounded-lg text-center text-slate-700 dark:text-slate-200 h-full flex items-center justify-center">
                 {tech}
               </div>
             </AnimatedElement>
@@ -295,7 +295,7 @@ export default function IntegrationPage() {
       {/* Case Study Highlight Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">
             Success Stories
           </h2>
         </AnimatedElement>
@@ -345,16 +345,16 @@ export default function IntegrationPage() {
       {/* FAQ Section */}
       <section className="mb-20">
         <AnimatedElement>
-          <h2 className="text-3xl font-bold text-slate-900 mb-12">FAQ</h2>
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-12">FAQ</h2>
         </AnimatedElement>
         <div className="space-y-6">
           {faqs.map((faq, index) => (
             <AnimatedElement key={index} delay={index * 0.1}>
-              <div className="bg-white border border-slate-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-slate-900 mb-2">
+              <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
                   {faq.question}
                 </h3>
-                <p className="text-slate-600">{faq.answer}</p>
+                <p className="text-slate-600 dark:text-slate-300">{faq.answer}</p>
               </div>
             </AnimatedElement>
           ))}

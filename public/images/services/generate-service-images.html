@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Service Page Image Generator</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1 {
+      color: #0070f3;
+      margin-bottom: 20px;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .canvas-container {
+      border: 1px solid #eaeaea;
+      border-radius: 8px;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    canvas {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    select, input, button {
+      padding: 8px 12px;
+      border-radius: 4px;
+      border: 1px solid #d1d1d1;
+      font-size: 16px;
+    }
+    button {
+      background-color: #0070f3;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    button:hover {
+      background-color: #0060df;
+    }
+    .instructions {
+      background-color: #f0f7ff;
+      border-left: 4px solid #0070f3;
+      padding: 15px;
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Service Page Image Generator</h1>
+  
+  <div class="instructions">
+    <p>This tool helps you create hero images for the service pages. Select a service, customize the image if needed, and download it. Then place the downloaded image in the appropriate service directory.</p>
+    <p>Required dimensions: 1200×600 pixels</p>
+  </div>
+  
+  <div class="container">
+    <div class="controls">
+      <label for="service-select">Select Service:</label>
+      <select id="service-select">
+        <option value="dynamics365">Dynamics 365 Implementation & Architecture</option>
+        <option value="azure">Azure Cloud Architecture & Integration</option>
+        <option value="power-platform">Power Platform Custom Development</option>
+        <option value="ai-copilot">AI & Copilot Integration</option>
+        <option value="integration">Integration Architecture</option>
+        <option value="transformation">Digital Transformation</option>
+      </select>
+      
+      <label for="icon-select">Icon Style:</label>
+      <select id="icon-select">
+        <option value="abstract">Abstract Pattern</option>
+        <option value="geometric">Geometric Shapes</option>
+        <option value="wave">Wave Pattern</option>
+        <option value="dots">Dot Grid</option>
+      </select>
+      
+      <label for="bg-color">Background Color:</label>
+      <input type="color" id="bg-color" value="#0070f3">
+      
+      <label for="text-color">Text Color:</label>
+      <input type="color" id="text-color" value="#ffffff">
+      
+      <button id="generate-btn">Generate Image</button>
+      <button id="download-btn">Download Image</button>
+    </div>
+    
+    <div class="canvas-container">
+      <canvas id="canvas" width="1200" height="600"></canvas>
+    </div>
+  </div>
+  
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const serviceSelect = document.getElementById('service-select');
+    const iconSelect = document.getElementById('icon-select');
+    const bgColorInput = document.getElementById('bg-color');
+    const textColorInput = document.getElementById('text-color');
+    const generateBtn = document.getElementById('generate-btn');
+    const downloadBtn = document.getElementById('download-btn');
+    
+    // Service icons (simplified representations)
+    const serviceIcons = {
+      'dynamics365': drawDynamicsIcon,
+      'azure': drawAzureIcon,
+      'power-platform': drawPowerPlatformIcon,
+      'ai-copilot': drawAIIcon,
+      'integration': drawIntegrationIcon,
+      'transformation': drawTransformationIcon
+    };
+    
+    // Generate initial image
+    generateImage();
+    
+    // Event listeners
+    serviceSelect.addEventListener('change', generateImage);
+    iconSelect.addEventListener('change', generateImage);
+    bgColorInput.addEventListener('change', generateImage);
+    textColorInput.addEventListener('change', generateImage);
+    generateBtn.addEventListener('click', generateImage);
+    downloadBtn.addEventListener('click', downloadImage);
+    
+    function generateImage() {
+      const service = serviceSelect.value;
+      const iconStyle = iconSelect.value;
+      const bgColor = bgColorInput.value;
+      const textColor = textColorInput.value;
+      const serviceName = serviceSelect.options[serviceSelect.selectedIndex].text;
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw background
+      ctx.fillStyle = bgColor;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Add pattern based on selected style
+      drawPattern(iconStyle, bgColor);
+      
+      // Draw service icon
+      if (serviceIcons[service]) {
+        serviceIcons[service](textColor);
+      }
+      
+      // No text will be drawn on the image
+      
+      // Add subtle vignette effect
+      const gradient = ctx.createRadialGradient(
+        canvas.width / 2, canvas.height / 2, canvas.width / 3,
+        canvas.width / 2, canvas.height / 2, canvas.width
+      );
+      gradient.addColorStop(0, 'rgba(0,0,0,0)');
+      gradient.addColorStop(1, 'rgba(0,0,0,0.3)');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    
+    function drawPattern(style, bgColor) {
+      switch(style) {
+        case 'abstract':
+          drawAbstractPattern(bgColor);
+          break;
+        case 'geometric':
+          drawGeometricPattern(bgColor);
+          break;
+        case 'wave':
+          drawWavePattern(bgColor);
+          break;
+        case 'dots':
+          drawDotPattern(bgColor);
+          break;
+      }
+    }
+    
+    function drawAbstractPattern(bgColor) {
+      ctx.fillStyle = adjustColor(bgColor, 0.1);
+      for (let i = 0; i < 10; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const radius = 50 + Math.random() * 200;
+        
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    
+    function drawGeometricPattern(bgColor) {
+      ctx.fillStyle = adjustColor(bgColor, 0.1);
+      for (let i = 0; i < 20; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const size = 30 + Math.random() * 100;
+        
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(Math.random() * Math.PI);
+        ctx.fillRect(-size/2, -size/2, size, size);
+        ctx.restore();
+      }
+    }
+    
+    function drawWavePattern(bgColor) {
+      ctx.strokeStyle = adjustColor(bgColor, 0.1);
+      ctx.lineWidth = 3;
+      
+      for (let i = 0; i < 10; i++) {
+        const yOffset = i * 70;
+        
+        ctx.beginPath();
+        for (let x = 0; x < canvas.width; x += 5) {
+          const y = Math.sin(x * 0.01 + i) * 20 + yOffset + 100;
+          if (x === 0) {
+            ctx.moveTo(x, y);
+          } else {
+            ctx.lineTo(x, y);
+          }
+        }
+        ctx.stroke();
+      }
+    }
+    
+    function drawDotPattern(bgColor) {
+      ctx.fillStyle = adjustColor(bgColor, 0.1);
+      const spacing = 40;
+      
+      for (let x = 0; x < canvas.width; x += spacing) {
+        for (let y = 0; y < canvas.height; y += spacing) {
+          const offsetX = (Math.random() - 0.5) * 10;
+          const offsetY = (Math.random() - 0.5) * 10;
+          const radius = 2 + Math.random() * 4;
+          
+          ctx.beginPath();
+          ctx.arc(x + offsetX, y + offsetY, radius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+    
+    // Service icon drawing functions
+    function drawDynamicsIcon(color) {
+      ctx.fillStyle = color;
+      ctx.globalAlpha = 0.2;
+      
+      // Stylized D365 icon
+      ctx.beginPath();
+      ctx.arc(200, 300, 100, 0, Math.PI * 2);
+      ctx.fill();
+      
+      ctx.beginPath();
+      ctx.arc(200, 300, 70, 0, Math.PI * 2);
+      ctx.fillStyle = adjustColor(bgColorInput.value, 0.2);
+      ctx.fill();
+      
+      ctx.globalAlpha = 1;
+    }
+    
+    function drawAzureIcon(color) {
+      ctx.fillStyle = color;
+      ctx.globalAlpha = 0.2;
+      
+      // Stylized Azure cloud
+      ctx.beginPath();
+      ctx.moveTo(150, 320);
+      ctx.bezierCurveTo(150, 270, 200, 250, 250, 280);
+      ctx.bezierCurveTo(270, 230, 350, 230, 370, 280);
+      ctx.bezierCurveTo(420, 270, 450, 310, 430, 350);
+      ctx.bezierCurveTo(450, 380, 420, 420, 380, 410);
+      ctx.bezierCurveTo(360, 440, 300, 450, 270, 410);
+      ctx.bezierCurveTo(230, 430, 190, 410, 180, 380);
+      ctx.bezierCurveTo(140, 370, 130, 330, 150, 320);
+      ctx.fill();
+      
+      ctx.globalAlpha = 1;
+    }
+    
+    function drawPowerPlatformIcon(color) {
+      ctx.fillStyle = color;
+      ctx.globalAlpha = 0.2;
+      
+      // Stylized Power Platform icon
+      const centerX = 200;
+      const centerY = 300;
+      const size = 80;
+      
+      // Power Apps
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY - size);
+      ctx.lineTo(centerX + size, centerY);
+      ctx.lineTo(centerX, centerY + size);
+      ctx.lineTo(centerX - size, centerY);
+      ctx.closePath();
+      ctx.fill();
+      
+      ctx.globalAlpha = 1;
+    }
+    
+    function drawAIIcon(color) {
+      ctx.fillStyle = color;
+      ctx.globalAlpha = 0.2;
+      
+      // Stylized AI brain icon
+      const centerX = 200;
+      const centerY = 300;
+      const radius = 80;
+      
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Neural network lines
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.globalAlpha = 0.3;
+      
+      for (let i = 0; i < 8; i++) {
+        const angle = (i / 8) * Math.PI * 2;
+        const x1 = centerX + Math.cos(angle) * radius;
+        const y1 = centerY + Math.sin(angle) * radius;
+        
+        for (let j = i + 1; j < 8; j++) {
+          const angle2 = (j / 8) * Math.PI * 2;
+          const x2 = centerX + Math.cos(angle2) * radius;
+          const y2 = centerY + Math.sin(angle2) * radius;
+          
+          ctx.beginPath();
+          ctx.moveTo(x1, y1);
+          ctx.lineTo(x2, y2);
+          ctx.stroke();
+        }
+      }
+      
+      ctx.globalAlpha = 1;
+    }
+    
+    function drawIntegrationIcon(color) {
+      ctx.fillStyle = color;
+      ctx.globalAlpha = 0.2;
+      
+      // Stylized integration icon
+      const centerX = 200;
+      const centerY = 300;
+      const radius = 30;
+      const distance = 70;
+      
+      // Draw nodes
+      for (let i = 0; i < 3; i++) {
+        const angle = (i / 3) * Math.PI * 2;
+        const x = centerX + Math.cos(angle) * distance;
+        const y = centerY + Math.sin(angle) * distance;
+        
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      
+      // Draw center node
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Draw connections
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 3;
+      ctx.globalAlpha = 0.3;
+      
+      for (let i = 0; i < 3; i++) {
+        const angle = (i / 3) * Math.PI * 2;
+        const x = centerX + Math.cos(angle) * distance;
+        const y = centerY + Math.sin(angle) * distance;
+        
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+      }
+      
+      ctx.globalAlpha = 1;
+    }
+    
+    function drawTransformationIcon(color) {
+      ctx.fillStyle = color;
+      ctx.globalAlpha = 0.2;
+      
+      // Stylized transformation icon
+      const centerX = 200;
+      const centerY = 300;
+      const size = 80;
+      
+      // Draw arrow
+      ctx.beginPath();
+      ctx.moveTo(centerX - size, centerY);
+      ctx.lineTo(centerX + size, centerY);
+      ctx.lineTo(centerX + size - 20, centerY - 20);
+      ctx.moveTo(centerX + size, centerY);
+      ctx.lineTo(centerX + size - 20, centerY + 20);
+      ctx.lineWidth = 8;
+      ctx.strokeStyle = color;
+      ctx.stroke();
+      
+      // Draw transformation elements
+      for (let i = -2; i <= 2; i++) {
+        if (i === 0) continue;
+        
+        const x = centerX + i * 30;
+        const y = centerY - 40;
+        const height = i % 2 === 0 ? 30 : 60;
+        
+        ctx.fillRect(x - 10, y, 20, height);
+      }
+      
+      ctx.globalAlpha = 1;
+    }
+    
+    function downloadImage() {
+      const service = serviceSelect.value;
+      const link = document.createElement('a');
+      link.download = `${service}-hero.jpg`;
+      link.href = canvas.toDataURL('image/jpeg', 0.8);
+      link.click();
+    }
+    
+    function adjustColor(color, amount) {
+      // Convert hex to RGB
+      let r = parseInt(color.substr(1, 2), 16);
+      let g = parseInt(color.substr(3, 2), 16);
+      let b = parseInt(color.substr(5, 2), 16);
+      
+      // Adjust color
+      if (amount > 0) {
+        r = Math.min(255, r + (255 - r) * amount);
+        g = Math.min(255, g + (255 - g) * amount);
+        b = Math.min(255, b + (255 - b) * amount);
+      } else {
+        r = Math.max(0, r + r * amount);
+        g = Math.max(0, g + g * amount);
+        b = Math.max(0, b + b * amount);
+      }
+      
+      // Convert back to hex
+      return `#${Math.round(r).toString(16).padStart(2, '0')}${Math.round(g).toString(16).padStart(2, '0')}${Math.round(b).toString(16).padStart(2, '0')}`;
+    }
+  </script>
+</body>
+</html>
