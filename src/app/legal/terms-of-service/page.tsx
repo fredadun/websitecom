@@ -3,7 +3,6 @@
 import React from 'react';
 import Layout from '@/components/layout/layout';
 import AnimatedElement from '@/components/ui/animated-element';
-// Link import removed
 
 export default function TermsOfServicePage() {
   return (
