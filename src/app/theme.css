@@ -1,0 +1,30 @@
+/* Theme toggle styles */
+:root {
+  color-scheme: light;
+  --tw-bg-opacity: 1;
+  --tw-text-opacity: 1;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+/* Ensure dark mode styles are applied */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    color-scheme: dark;
+  }
+}
+
+/* Force theme transition */
+.theme-transitioning * {
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out !important;
+}
+
+/* Ensure Tailwind dark mode works properly */
+.dark body {
+  --tw-bg-opacity: 1;
+  background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(226 232 240 / var(--tw-text-opacity));
+}
