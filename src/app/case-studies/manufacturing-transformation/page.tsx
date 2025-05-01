@@ -38,7 +38,7 @@ export default function ManufacturingTransformationPage() {
       <AnimatedElement>
         <h2>The Challenge</h2>
         <p>
-          The client, a global manufacturing company with operations in 15 countries, was struggling with outdated legacy systems that couldn't keep pace with their growth. Their existing ERP system was over 15 years old, heavily customized, and increasingly difficult to maintain. Key challenges included:
+          The client, a global manufacturing company with operations in 15 countries, was struggling with outdated legacy systems that couldn&apos;t keep pace with their growth. Their existing ERP system was over 15 years old, heavily customized, and increasingly difficult to maintain. Key challenges included:
         </p>
         <ul>
           <li>Siloed data across multiple systems leading to decision-making delays</li>
@@ -62,7 +62,7 @@ export default function ManufacturingTransformationPage() {
         
         <h3>2. Solution Design</h3>
         <p>
-          Developed a tailored implementation strategy that leveraged Dynamics 365 F&O's standard functionality where possible while designing custom solutions for unique business requirements. Created a detailed integration architecture to connect with existing systems that would remain in place.
+          Developed a tailored implementation strategy that leveraged Dynamics 365 F&O&apos;s standard functionality where possible while designing custom solutions for unique business requirements. Created a detailed integration architecture to connect with existing systems that would remain in place.
         </p>
         
         <div className="my-8 relative rounded-xl overflow-hidden">
@@ -124,7 +124,7 @@ export default function ManufacturingTransformationPage() {
         
         <div className="my-8 p-6 bg-slate-50 dark:bg-slate-800 rounded-xl">
           <blockquote className="italic text-slate-600 dark:text-slate-300">
-            "The Dynamics 365 implementation led by Fred transformed our business operations. We now have the visibility and agility we need to respond quickly to market changes and customer demands. The ROI has exceeded our expectations."
+            &quot;The Dynamics 365 implementation led by Fred transformed our business operations. We now have the visibility and agility we need to respond quickly to market changes and customer demands. The ROI has exceeded our expectations.&quot;
           </blockquote>
           <p className="mt-4 font-medium text-slate-900 dark:text-white">— CIO, Global Manufacturing Leader</p>
         </div>

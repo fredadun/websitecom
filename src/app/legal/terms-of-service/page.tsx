@@ -3,7 +3,7 @@
 import React from 'react';
 import Layout from '@/components/layout/layout';
 import AnimatedElement from '@/components/ui/animated-element';
-import Link from 'next/link';
+// Link import removed
 
 export default function TermsOfServicePage() {
   return (
@@ -31,7 +31,7 @@ export default function TermsOfServicePage() {
             <AnimatedElement>
               <h2>Introduction</h2>
               <p>
-                Welcome to fredadun.com. This website is owned and operated by Fred Adun ("I", "me", "my"). By visiting my website and accessing the information, resources, services, and tools I provide, you understand and agree to accept and adhere to the following terms and conditions as stated in this policy.
+                Welcome to fredadun.com. This website is owned and operated by Fred Adun (&quot;I&quot;, &quot;me&quot;, &quot;my&quot;). By visiting my website and accessing the information, resources, services, and tools I provide, you understand and agree to accept and adhere to the following terms and conditions as stated in this policy.
               </p>
               <p>
                 This agreement is in effect as of May 1, 2025. I reserve the right to change this Terms of Service from time to time without notice. You acknowledge and agree that it is your responsibility to review this Terms of Service periodically to familiarize yourself with any modifications. Your continued use of this site after such modifications will constitute acknowledgment and agreement of the modified terms and conditions.
@@ -58,10 +58,10 @@ export default function TermsOfServicePage() {
             <AnimatedElement>
               <h2>Intellectual Property Rights</h2>
               <p>
-                Unless otherwise indicated, this website is my proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the website (collectively, the "Content") and the trademarks, service marks, and logos contained therein (the "Marks") are owned or controlled by me or licensed to me, and are protected by copyright and trademark laws and various other intellectual property rights.
+                Unless otherwise indicated, this website is my proprietary property and all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics on the website (collectively, the &quot;Content&quot;) and the trademarks, service marks, and logos contained therein (the &quot;Marks&quot;) are owned or controlled by me or licensed to me, and are protected by copyright and trademark laws and various other intellectual property rights.
               </p>
               <p>
-                The Content and the Marks are provided on the website "AS IS" for your information and personal use only. Except as expressly provided in these Terms of Service, no part of the website and no Content or Marks may be copied, reproduced, aggregated, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted, distributed, sold, licensed, or otherwise exploited for any commercial purpose whatsoever, without my express prior written permission.
+                The Content and the Marks are provided on the website &quot;AS IS&quot; for your information and personal use only. Except as expressly provided in these Terms of Service, no part of the website and no Content or Marks may be copied, reproduced, aggregated, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted, distributed, sold, licensed, or otherwise exploited for any commercial purpose whatsoever, without my express prior written permission.
               </p>
               <p>
                 Provided that you are eligible to use the website, you are granted a limited license to access and use the website and to download or print a copy of any portion of the Content to which you have properly gained access solely for your personal, non-commercial use. I reserve all rights not expressly granted to you in and to the website, the Content, and the Marks.
@@ -134,7 +134,7 @@ export default function TermsOfServicePage() {
             <AnimatedElement>
               <h2>Indemnification</h2>
               <p>
-                You agree to defend, indemnify, and hold me harmless, including my subsidiaries, affiliates, and all of my respective officers, agents, partners, and employees, from and against any loss, damage, liability, claim, or demand, including reasonable attorneys' fees and expenses, made by any third party due to or arising out of: (1) your use of the Services; (2) breach of these Terms of Service; (3) any breach of your representations and warranties set forth in these Terms of Service; (4) your violation of the rights of a third party, including but not limited to intellectual property rights; or (5) any overt harmful act toward any other user of the Services with whom you connected via the Services.
+                You agree to defend, indemnify, and hold me harmless, including my subsidiaries, affiliates, and all of my respective officers, agents, partners, and employees, from and against any loss, damage, liability, claim, or demand, including reasonable attorneys&apos; fees and expenses, made by any third party due to or arising out of: (1) your use of the Services; (2) breach of these Terms of Service; (3) any breach of your representations and warranties set forth in these Terms of Service; (4) your violation of the rights of a third party, including but not limited to intellectual property rights; or (5) any overt harmful act toward any other user of the Services with whom you connected via the Services.
               </p>
               <p>
                 Notwithstanding the foregoing, I reserve the right, at your expense, to assume the exclusive defense and control of any matter for which you are required to indemnify me, and you agree to cooperate, at your expense, with my defense of such claims. I will use reasonable efforts to notify you of any such claim, action, or proceeding which is subject to this indemnification upon becoming aware of it.

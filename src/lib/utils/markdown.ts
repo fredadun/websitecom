@@ -24,7 +24,7 @@ export function getContentFiles(directory: string): string[] {
 export function getContentBySlug(directory: string, slug: string): {
   slug: string;
   content: string;
-  [key: string]: any;
+  [key: string]: string | number | boolean | object;
 } {
   const contentDirectory = path.join(process.cwd(), 'src', 'content', directory);
   const fullPath = path.join(contentDirectory, `${slug}.md`);
@@ -45,15 +45,25 @@ export function getContentBySlug(directory: string, slug: string): {
  */
 export function getAllContent(directory: string): Array<{
   slug: string;
-  [key: string]: any;
+  date?: string;
+  [key: string]: string | number | boolean | object | undefined;
 }> {
   const slugs = getContentFiles(directory);
+  // Use explicit type for content items
+  type ContentItem = {
+    slug: string;
+    date?: string;
+    [key: string]: string | number | boolean | object | undefined;
+  };
+
   const content = slugs.map(slug => {
-    const { content, ...data } = getContentBySlug(directory, slug);
-    return {
-      slug,
-      ...data,
-    };
+    // Explicitly ignore the content property
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { content: ignored, ...data } = getContentBySlug(directory, slug);
+    // Ensure we don't have duplicate slug property
+    const result: ContentItem = { ...data } as ContentItem;
+    result.slug = slug;
+    return result;
   });
 
   // Sort by date if available

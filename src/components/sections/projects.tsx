@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { 
   BoxIcon, 
@@ -361,13 +362,13 @@ export const Projects = () => {
           transition={{ duration: 0.5 }}
           className="mt-16 text-center"
         >
-          <a
+          <Link
             href="/case-studies"
             className="inline-flex items-center px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
           >
             View All Case Studies
             <ArrowRightIcon className="ml-2 h-5 w-5" />
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

@@ -3,7 +3,7 @@
 import React from 'react';
 import Layout from '@/components/layout/layout';
 import AnimatedElement from '@/components/ui/animated-element';
-import Link from 'next/link';
+// Link import removed
 
 export default function PrivacyPolicyPage() {
   return (
@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
             <AnimatedElement>
               <h2>Introduction</h2>
               <p>
-                Fred Adun ("I", "me", or "my") respects your privacy and is committed to protecting your personal data. This privacy policy will inform you about how I look after your personal data when you visit my website (fredadun.com) and tell you about your privacy rights and how the law protects you.
+                Fred Adun (&quot;I&quot;, &quot;me&quot;, or &quot;my&quot;) respects your privacy and is committed to protecting your personal data. This privacy policy will inform you about how I look after your personal data when you visit my website (fredadun.com) and tell you about your privacy rights and how the law protects you.
               </p>
               <p>
                 This privacy policy applies to personal data I collect through my website, as well as through email, text, and other electronic communications between you and my website.
@@ -110,7 +110,7 @@ export default function PrivacyPolicyPage() {
                 My website uses cookies to distinguish you from other users of my website. This helps me to provide you with a good experience when you browse my website and also allows me to improve my site.
               </p>
               <p>
-                A cookie is a small file of letters and numbers that I store on your browser or the hard drive of your computer if you agree. Cookies contain information that is transferred to your computer's hard drive.
+                A cookie is a small file of letters and numbers that I store on your browser or the hard drive of your computer if you agree. Cookies contain information that is transferred to your computer&apos;s hard drive.
               </p>
               <p>
                 You can set your browser to refuse all or some browser cookies, or to alert you when websites set or access cookies. If you disable or refuse cookies, please note that some parts of this website may become inaccessible or not function properly.
@@ -165,14 +165,14 @@ export default function PrivacyPolicyPage() {
                 Email address: me@fredadun.com
               </p>
               <p>
-                You have the right to make a complaint at any time to the Information Commissioner's Office (ICO), the UK supervisory authority for data protection issues (www.ico.org.uk). I would, however, appreciate the chance to deal with your concerns before you approach the ICO, so please contact me in the first instance.
+                You have the right to make a complaint at any time to the Information Commissioner&apos;s Office (ICO), the UK supervisory authority for data protection issues (www.ico.org.uk). I would, however, appreciate the chance to deal with your concerns before you approach the ICO, so please contact me in the first instance.
               </p>
             </AnimatedElement>
 
             <AnimatedElement>
               <h2>Changes to the Privacy Policy</h2>
               <p>
-                I may update this privacy policy from time to time. I will notify you of any changes by posting the new privacy policy on this page and updating the "Last updated" date at the top of this privacy policy.
+                I may update this privacy policy from time to time. I will notify you of any changes by posting the new privacy policy on this page and updating the &quot;Last updated&quot; date at the top of this privacy policy.
               </p>
               <p>
                 You are advised to review this privacy policy periodically for any changes. Changes to this privacy policy are effective when they are posted on this page.
