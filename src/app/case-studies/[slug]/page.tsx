@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { notFound } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -107,11 +107,49 @@ const caseStudies = [
   // Additional case studies would be defined here
 ];
 
-export default function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const caseStudy = caseStudies.find(cs => cs.slug === params.slug);
+export default function CaseStudyPage() {
+  const [caseStudy, setCaseStudy] = useState<typeof caseStudies[0] | null>(null);
+  const [loading, setLoading] = useState(true);
+  const pathname = usePathname();
+  const router = useRouter();
+  
+  useEffect(() => {
+    // Extract slug from pathname
+    const slugMatch = pathname?.match(/\/case-studies\/([^/]+)/);
+    const slug = slugMatch ? slugMatch[1] : null;
+    
+    if (slug) {
+      const foundCaseStudy = caseStudies.find(cs => cs.slug === slug);
+      if (foundCaseStudy) {
+        setCaseStudy(foundCaseStudy);
+      } else {
+        router.push('/case-studies');
+      }
+    } else {
+      router.push('/case-studies');
+    }
+    
+    setLoading(false);
+  }, [pathname, router]);
+  
+  if (loading) {
+    return (
+      <Layout>
+        <div className="min-h-screen flex items-center justify-center">
+          <p className="text-xl">Loading...</p>
+        </div>
+      </Layout>
+    );
+  }
   
   if (!caseStudy) {
-    notFound();
+    return (
+      <Layout>
+        <div className="min-h-screen flex items-center justify-center">
+          <p className="text-xl">Case study not found. Redirecting to case studies...</p>
+        </div>
+      </Layout>
+    );
   }
 
   return (

@@ -24,7 +24,7 @@ export function getContentFiles(directory: string): string[] {
 export function getContentBySlug(directory: string, slug: string): {
   slug: string;
   content: string;
-  [key: string]: string | number | boolean | object;
+  [key: string]: string | number | boolean | Record<string, unknown>;
 } {
   const contentDirectory = path.join(process.cwd(), 'src', 'content', directory);
   const fullPath = path.join(contentDirectory, `${slug}.md`);
@@ -46,22 +46,22 @@ export function getContentBySlug(directory: string, slug: string): {
 export function getAllContent(directory: string): Array<{
   slug: string;
   date?: string;
-  [key: string]: string | number | boolean | object | undefined;
+  [key: string]: string | number | boolean | Record<string, unknown> | undefined;
 }> {
   const slugs = getContentFiles(directory);
   // Use explicit type for content items
   type ContentItem = {
     slug: string;
     date?: string;
-    [key: string]: string | number | boolean | object | undefined;
+    [key: string]: string | number | boolean | Record<string, unknown> | undefined;
   };
 
   const content = slugs.map(slug => {
-    // Explicitly ignore the content property
+    // Omit content property as we don't need it here
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { content: ignored, ...data } = getContentBySlug(directory, slug);
+    const { content, ...contentData } = getContentBySlug(directory, slug);
     // Ensure we don't have duplicate slug property
-    const result: ContentItem = { ...data } as ContentItem;
+    const result: ContentItem = { ...contentData } as ContentItem;
     result.slug = slug;
     return result;
   });

@@ -19,10 +19,10 @@ export default function ScrollAnimations() {
 
   const setupScrollAnimations = () => {
     // Stagger fade-in for list items
-    inView('.animate-stagger-list', (info) => {
-      const element = info.target as HTMLElement;
+    inView('.animate-stagger-list', (element) => {
+      const htmlElement = element as HTMLElement;
       animate(
-        element.querySelectorAll('li'),
+        htmlElement.querySelectorAll('li'),
         { opacity: [0, 1], y: [20, 0] },
         { delay: stagger(0.1), duration: 0.5 }
       );
@@ -30,55 +30,91 @@ export default function ScrollAnimations() {
     });
 
     // Fade in for sections
-    inView('.animate-fade-in', (info) => {
-      const element = info.target as HTMLElement;
+    inView('.animate-fade-in', (element) => {
+      const htmlElement = element as HTMLElement;
       animate(
-        element,
+        htmlElement,
         { opacity: [0, 1], y: [20, 0] },
         { duration: 0.6, delay: 0.2 }
       );
       return () => {};
     });
 
-    // Slide in from left
-    inView('.animate-slide-left', (info) => {
-      const element = info.target as HTMLElement;
+    // Slide up animation
+    inView('.animate-slide-up', (element) => {
+      const htmlElement = element as HTMLElement;
       animate(
-        element,
-        { opacity: [0, 1], x: [-50, 0] },
+        htmlElement,
+        { opacity: [0, 1], y: [50, 0] },
         { duration: 0.6 }
       );
       return () => {};
     });
 
     // Slide in from right
-    inView('.animate-slide-right', (info) => {
-      const element = info.target as HTMLElement;
+    inView('.animate-slide-in-right', (element) => {
+      const htmlElement = element as HTMLElement;
       animate(
-        element,
+        htmlElement,
         { opacity: [0, 1], x: [50, 0] },
         { duration: 0.6 }
       );
       return () => {};
     });
 
-    // Scale up animation
-    inView('.animate-scale', (info) => {
-      const element = info.target as HTMLElement;
+    // Slide in from left
+    inView('.animate-slide-in-left', (element) => {
+      const htmlElement = element as HTMLElement;
       animate(
-        element,
+        htmlElement,
+        { opacity: [0, 1], x: [-50, 0] },
+        { duration: 0.6 }
+      );
+      return () => {};
+    });
+
+    // Scale up animation
+    inView('.animate-scale-in', (element) => {
+      const htmlElement = element as HTMLElement;
+      animate(
+        htmlElement,
         { opacity: [0, 1], scale: [0.9, 1] },
         { duration: 0.5 }
       );
       return () => {};
     });
 
+    // Stagger fade animation
+    inView('.animate-stagger-fade', (element) => {
+      const htmlElement = element as HTMLElement;
+      const children = Array.from(htmlElement.children);
+      animate(
+        children,
+        { opacity: [0, 1] },
+        { delay: stagger(0.1), duration: 0.5 }
+      );
+      return () => {};
+    });
+
+    // Stagger slide animation
+    inView('.animate-stagger-slide', (element) => {
+      const htmlElement = element as HTMLElement;
+      const children = Array.from(htmlElement.children);
+      animate(
+        children,
+        { opacity: [0, 1], y: [20, 0] },
+        { delay: stagger(0.1), duration: 0.5 }
+      );
+      return () => {};
+    });
+
     // Count up animation for numbers
-    inView('.animate-count', (info) => {
-      const element = info.target as HTMLElement;
-      const countElements = element.querySelectorAll('.count-value');
-      countElements.forEach((el: Element) => {
-        const value = parseInt(el.getAttribute('data-value') || '0', 10);
+    inView('.animate-count', (element) => {
+      const htmlElement = element as HTMLElement;
+      const countElements = htmlElement.querySelectorAll('.count-value');
+      countElements.forEach((el) => {
+        const countEl = el as HTMLElement;
+        const value = parseInt(countEl.getAttribute('data-value') || '0', 10);
         const startValue = 0;
         const duration = 1500; // ms
         const frameDuration = 1000 / 60; // 60fps
@@ -91,9 +127,7 @@ export default function ScrollAnimations() {
           const progress = easeOutQuad(frame / totalFrames);
           const currentValue = Math.round(startValue + (value - startValue) * progress);
           
-          if (el instanceof HTMLElement) {
-            el.innerText = currentValue.toString();
-          }
+          countEl.innerText = currentValue.toString();
           
           if (frame === totalFrames) {
             clearInterval(counter);
