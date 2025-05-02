@@ -172,10 +172,11 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-16 px-4"
         >
-          <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
-            Let&apos;s Discuss Your Project
+          <h1 className="text-display-xl font-bold text-slate-900 dark:text-white mb-4 relative inline-block">
+            <span className="relative z-10">Let&apos;s Discuss Your Project</span>
+            <span className="absolute -bottom-2 left-0 right-0 h-3 bg-blue-500/20 -z-10 transform -rotate-1"></span>
           </h1>
           <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
             Reach out to explore how we can transform your Microsoft implementation together
@@ -207,17 +208,17 @@ const Contact = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6"
+              className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 dark:border-slate-700 h-full group"
             >
-              <div className="text-blue-600 dark:text-blue-400 mb-4">{option.icon}</div>
-              <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
+              <div className="text-blue-600 dark:text-blue-400 mb-4 transform transition-transform group-hover:scale-110 duration-300">{option.icon}</div>
+              <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                 {option.heading}
               </h3>
               <p className="text-slate-600 dark:text-slate-300 mb-4">{option.content}</p>
               {option.cta && (
                 <div className="text-blue-600 dark:text-blue-400 font-medium mb-2">
                   {option.heading === 'Schedule a Consultation' ? (
-                    <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                    <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md font-medium">
                       {option.cta}
                     </button>
                   ) : option.cta}
@@ -234,10 +235,11 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-8 mb-16"
+          className="bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-lg transition-all duration-500 border border-slate-200 dark:border-slate-700 p-8 mb-16"
         >
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
-            Tell Me About Your Project
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 relative inline-block">
+            <span className="relative z-10">Tell Me About Your Project</span>
+            <span className="absolute -bottom-1 left-0 right-0 h-2 bg-blue-500/20 -z-10"></span>
           </h2>
           {isSubmitted ? (
             <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-6 text-center">
@@ -505,7 +507,7 @@ const Contact = () => {
               <button 
                 type="submit" 
                 disabled={isSubmitting}
-                className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:bg-blue-400 disabled:cursor-not-allowed flex items-center justify-center"
+                className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300 disabled:bg-blue-400 disabled:cursor-not-allowed flex items-center justify-center shadow-sm hover:shadow-md font-medium transform hover:-translate-y-1"
               >
                 {isSubmitting ? (
                   <>
@@ -558,20 +560,23 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-slate-50 dark:bg-slate-800 rounded-xl p-8 mb-16"
+          className="bg-slate-50 dark:bg-slate-800 rounded-xl p-8 mb-16 shadow-md border border-slate-100 dark:border-slate-700"
         >
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 text-center">
-            Current Availability
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 text-center relative inline-block">
+            <span className="relative z-10">Current Availability</span>
+            <span className="absolute -bottom-1 left-0 right-0 h-2 bg-blue-500/20 -z-10"></span>
           </h2>
           <p className="text-slate-600 dark:text-slate-300 text-center mb-8">
             I&apos;m currently available for new projects starting June 2024. My typical engagement models include:
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {engagementModels.map((model, index) => (
-              <div key={index} className="flex items-start">
-                <CheckIcon className="h-5 w-5 text-blue-600 dark:text-blue-400 mr-2 mt-1" />
+              <div key={index} className="flex items-start p-3 rounded-lg hover:bg-white dark:hover:bg-slate-700/50 transition-colors duration-300 group">
+                <div className="bg-blue-100 dark:bg-blue-900/30 p-2 rounded-full mr-3 group-hover:bg-blue-200 dark:group-hover:bg-blue-800/50 transition-colors duration-300">
+                  <CheckIcon className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                </div>
                 <div>
-                  <h3 className="font-medium text-slate-900 dark:text-white">{model.title}</h3>
+                  <h3 className="font-medium text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">{model.title}</h3>
                   <p className="text-slate-600 dark:text-slate-300">{model.description}</p>
                 </div>
               </div>
@@ -587,16 +592,17 @@ const Contact = () => {
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center">
-            Frequently Asked Questions
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center relative inline-block">
+            <span className="relative z-10">Frequently Asked Questions</span>
+            <span className="absolute -bottom-1 left-0 right-0 h-2 bg-blue-500/20 -z-10"></span>
           </h2>
           <div className="space-y-4">
             {faqs.map((faq, index) => (
               <details 
                 key={index} 
-                className="group bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700"
+                className="group bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200 dark:border-slate-700 overflow-hidden"
               >
-                <summary className="flex justify-between items-center cursor-pointer p-6">
+                <summary className="flex justify-between items-center cursor-pointer p-6 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors duration-300">
                   <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
                     {faq.q}
                   </h3>
@@ -618,8 +624,9 @@ const Contact = () => {
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center">
-            What Clients Say
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center relative inline-block">
+            <span className="relative z-10">What Clients Say</span>
+            <span className="absolute -bottom-1 left-0 right-0 h-2 bg-blue-500/20 -z-10"></span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
@@ -629,11 +636,15 @@ const Contact = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6"
+                className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 dark:border-slate-700 group hover:-translate-y-1 transform"
               >
-                <p className="text-slate-600 dark:text-slate-300 italic mb-4">
-                  &quot;{testimonial.quote}&quot;
-                </p>
+                <div className="relative mb-6">
+                  <div className="absolute -top-4 -left-2 text-4xl text-blue-300 dark:text-blue-700 font-serif">&ldquo;</div>
+                  <p className="text-slate-600 dark:text-slate-300 italic mb-4 relative z-10">
+                    {testimonial.quote}
+                  </p>
+                  <div className="absolute -bottom-4 -right-2 text-4xl text-blue-300 dark:text-blue-700 font-serif">&rdquo;</div>
+                </div>
                 <p className="text-slate-900 dark:text-white font-medium">
                   {testimonial.attribution}
                 </p>
@@ -650,8 +661,9 @@ const Contact = () => {
           transition={{ duration: 0.5 }}
           className="text-center"
         >
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-            Ready to Transform Your Microsoft Implementation?
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 relative inline-block">
+            <span className="relative z-10">Ready to Transform Your Microsoft Implementation?</span>
+            <span className="absolute -bottom-1 left-0 right-0 h-2 bg-blue-500/20 -z-10"></span>
           </h2>
           <p className="text-slate-600 dark:text-slate-300 mb-8">
             Whether you have a specific project in mind or just want to explore possibilities, I&apos;m here to help.
@@ -661,14 +673,14 @@ const Contact = () => {
               href="https://www.linkedin.com/in/fred-adun-5994488/" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-sm hover:shadow-md font-medium transform hover:-translate-y-1"
             >
               <LinkedinIcon className="h-5 w-5 mr-2" />
               Connect on LinkedIn
             </a>
             <a 
               href="tel:+447477295070" 
-              className="inline-flex items-center px-6 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-500 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors"
+              className="inline-flex items-center px-6 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 dark:border-blue-500 rounded-lg hover:bg-blue-50 dark:hover:bg-slate-800 transition-all duration-300 shadow-sm hover:shadow-md font-medium transform hover:-translate-y-1"
             >
               <PhoneIcon className="h-5 w-5 mr-2" />
               +44 7477 295070

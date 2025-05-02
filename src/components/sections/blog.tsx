@@ -138,10 +138,11 @@ const Blog = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-16 px-4"
         >
-          <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
-            Insights & Perspectives
+          <h1 className="text-display-xl font-bold text-slate-900 dark:text-white mb-4 relative inline-block">
+            <span className="relative z-10">Insights & Perspectives</span>
+            <span className="absolute -bottom-2 left-0 right-0 h-3 bg-blue-500/20 -z-10 transform -rotate-1"></span>
           </h1>
           <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
             Thoughts on Microsoft technologies, enterprise architecture, and emerging AI applications
@@ -174,21 +175,22 @@ const Blog = () => {
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
             Featured Article
           </h2>
-          <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+          <div className="bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 overflow-hidden group">
             <div className="md:flex">
               <div className="md:flex-shrink-0 md:w-96 relative">
-                <div className="h-64 w-full md:h-full relative">
+                <div className="h-64 w-full md:h-full relative overflow-hidden">
                   <Image 
                     src={featuredArticle.image} 
                     alt={featuredArticle.title} 
                     fill
                     sizes="(max-width: 768px) 100vw, 384px"
-                    className="object-cover"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               </div>
               <div className="p-8">
-                <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400 mb-4">
+                <div className="flex items-center gap-4 text-xs font-medium text-slate-500 dark:text-slate-400 mb-4">
                   <span className="flex items-center">
                     <CalendarIcon className="h-4 w-4 mr-1" />
                     {featuredArticle.date}
@@ -198,7 +200,7 @@ const Blog = () => {
                     {featuredArticle.readingTime}
                   </span>
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                   {featuredArticle.title}
                 </h3>
                 <p className="text-slate-600 dark:text-slate-300 mb-6">{featuredArticle.excerpt}</p>
@@ -239,7 +241,7 @@ const Blog = () => {
                   placeholder="Search articles..." 
                   value={searchQuery} 
                   onChange={e => setSearchQuery(e.target.value)} 
-                  className="w-full pl-10 pr-4 py-2 border border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
+                  className="w-full pl-10 pr-4 py-2 border border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm transition-all duration-300 hover:shadow-md" 
                 />
                 <SearchIcon className="absolute left-3 top-2.5 h-5 w-5 text-slate-400 dark:text-slate-500" />
               </div>
@@ -248,7 +250,7 @@ const Blog = () => {
               <select 
                 value={selectedCategory} 
                 onChange={e => setSelectedCategory(e.target.value as Category)} 
-                className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-4 py-2 border border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm transition-all duration-300 hover:shadow-md"
               >
                 <option value="all">All Categories</option>
                 {categories.map(category => (
@@ -270,19 +272,21 @@ const Blog = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden"
+              className="bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 overflow-hidden group h-full flex flex-col"
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
             >
-              <div className="relative h-48 w-full">
+              <div className="relative h-48 w-full overflow-hidden">
                 <Image 
                   src={article.image} 
                   alt={article.title} 
                   fill
                   sizes="(max-width: 768px) 100vw, 384px"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <div className="p-6">
-                <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400 mb-4">
+              <div className="p-6 flex flex-col flex-grow">
+                <div className="flex items-center gap-4 text-xs font-medium text-slate-500 dark:text-slate-400 mb-4">
                   <span className="flex items-center">
                     <CalendarIcon className="h-4 w-4 mr-1" />
                     {article.date}
@@ -292,10 +296,10 @@ const Blog = () => {
                     {article.readingTime}
                   </span>
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                   {article.title}
                 </h3>
-                <p className="text-slate-600 dark:text-slate-300 mb-6">{article.excerpt}</p>
+                <p className="text-slate-600 dark:text-slate-300 mb-6 flex-grow line-clamp-3">{article.excerpt}</p>
                 <div className="flex items-center justify-between">
                   <div className="flex flex-wrap gap-2">
                     {article.categories.map(category => (
@@ -323,10 +327,11 @@ const Blog = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-gradient-to-br from-blue-50 to-slate-50 dark:from-blue-900/20 dark:to-slate-800 rounded-xl p-8 text-center mb-16"
+          className="bg-gradient-to-br from-blue-50 to-slate-50 dark:from-blue-900/20 dark:to-slate-800 rounded-xl p-8 text-center mb-16 shadow-md border border-slate-100 dark:border-slate-700"
         >
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-            Stay Updated
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 inline-block relative">
+            <span className="relative z-10">Stay Updated</span>
+            <span className="absolute -bottom-1 left-0 right-0 h-2 bg-blue-500/20 -z-10"></span>
           </h2>
           <p className="text-slate-600 dark:text-slate-300 mb-6">
             Subscribe to receive notifications when new articles are published
@@ -340,7 +345,7 @@ const Blog = () => {
               />
               <button 
                 type="submit" 
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md font-medium"
               >
                 Subscribe
               </button>
@@ -356,17 +361,18 @@ const Blog = () => {
           transition={{ duration: 0.5 }}
           className="text-center"
         >
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-            Have a Topic in Mind?
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 inline-block relative">
+            <span className="relative z-10">Have a Topic in Mind?</span>
+            <span className="absolute -bottom-1 left-0 right-0 h-2 bg-blue-500/20 -z-10"></span>
           </h2>
           <p className="text-slate-600 dark:text-slate-300 mb-6">
             Is there a specific Microsoft technology topic you&apos;d like me to cover? 
             Or perhaps you&apos;re facing a particular implementation challenge?
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-3 mb-10">
             <a 
               href="#contact" 
-              className="inline-flex items-center px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-sm hover:shadow-md font-medium"
             >
               <MessageSquareIcon className="h-5 w-5 mr-2" />
               Suggest a Topic
@@ -375,7 +381,7 @@ const Blog = () => {
               href="https://www.linkedin.com/in/fred-adun-5994488/" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="inline-flex items-center px-6 py-3 rounded-lg border-2 border-blue-600 dark:border-blue-500 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors"
+              className="inline-flex items-center px-6 py-3 rounded-lg border-2 border-blue-600 dark:border-blue-500 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors shadow-sm hover:shadow-md font-medium"
             >
               <LinkedinIcon className="h-5 w-5 mr-2" />
               Connect on LinkedIn
