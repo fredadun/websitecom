@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import LogoCarousel from '../ui/logo-carousel';
 import { 
   BoxIcon, 
   CloudIcon, 
@@ -157,9 +158,11 @@ export const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }} 
           viewport={{ once: true }} 
           transition={{ duration: 0.5 }} 
-          className="text-center mb-16"
+          className="text-center mb-16 px-4"
         >
-          <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
+          <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-4 relative inline-block">
+            <span className="relative z-10">Client Success Stories</span>
+            <span className="absolute -bottom-2 left-0 right-0 h-3 bg-blue-500/20 -z-10 transform -rotate-1"></span>
             Client Success Stories
           </h2>
           <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
@@ -174,7 +177,7 @@ export const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }} 
           viewport={{ once: true }} 
           transition={{ duration: 0.5, delay: 0.2 }} 
-          className="prose prose-lg max-w-4xl mx-auto mb-16 text-center dark:prose-invert"
+          className="prose prose-lg max-w-4xl mx-auto mb-16 text-center dark:prose-invert px-4"
         >
           <p className="text-slate-600 dark:text-slate-300">
             Each project represents a unique set of business challenges solved
@@ -197,52 +200,56 @@ export const Projects = () => {
                 initial={{ opacity: 0, y: 20 }} 
                 whileInView={{ opacity: 1, y: 0 }} 
                 viewport={{ once: true }} 
-                transition={{ duration: 0.5, delay: index * 0.1 }} 
-                className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden"
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                className="bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 overflow-hidden group"
               >
-                <div className="aspect-video relative">
+                <div className="aspect-video relative overflow-hidden">
                   <Image 
                     src={project.image} 
                     alt={project.title} 
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <div className="text-white text-sm mb-2">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4 transform transition-transform duration-300 group-hover:translate-y-[-5px]">
+                    <div className="inline-block px-3 py-1 bg-blue-600/80 text-white text-xs font-medium rounded-full mb-2">
                       {project.industry}
                     </div>
-                    <div className="text-2xl font-bold text-white mb-2">
+                    <div className="text-2xl font-bold text-white mb-2 drop-shadow-sm">
                       {project.highlight}
                     </div>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
+                <div className="p-6 relative">
+                  <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                     {project.title}
                   </h4>
-                  <p className="text-slate-600 dark:text-slate-300 mb-4">{project.description}</p>
+                  <p className="text-slate-600 dark:text-slate-300 mb-5 line-clamp-3">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech, techIndex) => (
                       <span 
                         key={techIndex} 
-                        className="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm"
+                        className="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium border border-blue-100 dark:border-blue-800/50"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-slate-500 dark:text-slate-400">
+                  <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-100 dark:border-slate-700">
+                    <span className="text-sm font-medium text-slate-500 dark:text-slate-400 flex items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
                       {project.duration}
                     </span>
                     <a 
                       href={`/case-studies/${project.title.toLowerCase().replace(/\s+/g, '-')}`} 
-                      className="inline-flex items-center text-blue-600 dark:text-blue-500 hover:text-blue-700 dark:hover:text-blue-400"
+                      className="inline-flex items-center text-blue-600 dark:text-blue-500 hover:text-blue-700 dark:hover:text-blue-400 font-medium group/link"
                     >
                       View Case Study
-                      <ArrowRightIcon className="ml-2 h-4 w-4" />
+                      <ArrowRightIcon className="ml-2 h-4 w-4 transform transition-transform group-hover/link:translate-x-1" />
                     </a>
                   </div>
                 </div>
@@ -262,13 +269,13 @@ export const Projects = () => {
           <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center">
             Explore Projects by Category
           </h3>
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
+          <div className="flex flex-wrap justify-center gap-3 mb-10">
             <button
               onClick={() => setSelectedCategory('all')}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 shadow-sm ${
                 selectedCategory === 'all'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                  ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
+                  : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 hover:shadow-md'
               }`}
             >
               All Projects
@@ -277,10 +284,10 @@ export const Projects = () => {
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id as Category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center shadow-sm ${
                   selectedCategory === category.id
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                    ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 hover:shadow-md'
                 }`}
               >
                 <span className={selectedCategory === category.id ? 'text-white' : 'text-blue-600 dark:text-blue-500'} style={{ marginRight: '0.5rem' }}>
@@ -293,7 +300,7 @@ export const Projects = () => {
         </motion.div>
 
         {/* Project List */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={index}
@@ -301,10 +308,11 @@ export const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden p-6"
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              className="bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-slate-200 dark:border-slate-700 overflow-hidden p-6 group"
             >
-              <div className="flex items-start gap-4 mb-4">
-                <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+              <div className="flex items-start gap-4 mb-5">
+                <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg shadow-sm group-hover:bg-blue-100 dark:group-hover:bg-blue-900/50 transition-colors duration-300">
                   {project.category === 'dynamics-365' && <BoxIcon className="h-6 w-6 text-blue-600 dark:text-blue-500" />}
                   {project.category === 'azure' && <CloudIcon className="h-6 w-6 text-blue-600 dark:text-blue-500" />}
                   {project.category === 'integration' && <NetworkIcon className="h-6 w-6 text-blue-600 dark:text-blue-500" />}
@@ -315,44 +323,58 @@ export const Projects = () => {
                   {project.category === 'ai' && <BrainIcon className="h-6 w-6 text-blue-600 dark:text-blue-500" />}
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-slate-900 dark:text-white">{project.title}</h4>
-                  <div className="text-sm text-slate-500 dark:text-slate-400">{project.industry} • {project.duration}</div>
+                  <h4 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">{project.title}</h4>
+                  <div className="text-sm text-slate-500 dark:text-slate-400 mt-1">{project.industry} • {project.duration}</div>
                 </div>
               </div>
-              <div className="mb-4">
-                <div className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Challenge:</div>
+              <div className="mb-4 bg-slate-50 dark:bg-slate-700/30 p-3 rounded-lg border-l-2 border-blue-500">
+                <div className="text-sm font-medium text-blue-700 dark:text-blue-300 mb-1">Challenge:</div>
                 <p className="text-slate-600 dark:text-slate-400 text-sm">{project.challenge}</p>
               </div>
-              <div className="mb-4">
-                <div className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Approach:</div>
+              <div className="mb-4 bg-slate-50 dark:bg-slate-700/30 p-3 rounded-lg border-l-2 border-green-500">
+                <div className="text-sm font-medium text-green-700 dark:text-green-300 mb-1">Approach:</div>
                 <p className="text-slate-600 dark:text-slate-400 text-sm">{project.approach}</p>
               </div>
-              <div className="mb-4">
-                <div className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Results:</div>
-                <p className="text-slate-600 dark:text-slate-400 text-sm">{project.results}</p>
+              <div className="mb-5 bg-slate-50 dark:bg-slate-700/30 p-3 rounded-lg border-l-2 border-purple-500">
+                <div className="text-sm font-medium text-purple-700 dark:text-purple-300 mb-1">Results:</div>
+                <p className="text-slate-600 dark:text-slate-400 text-sm font-medium">{project.results}</p>
               </div>
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.technologies.map((tech, techIndex) => (
                   <span
                     key={techIndex}
-                    className="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs"
+                    className="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium border border-blue-100 dark:border-blue-800/50"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
-              <div className="text-right">
+              <div className="text-right mt-4 pt-3 border-t border-slate-100 dark:border-slate-700">
                 <a
                   href={`/case-studies/${project.title.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="inline-flex items-center text-blue-600 dark:text-blue-500 hover:text-blue-700 dark:hover:text-blue-400 text-sm"
+                  className="inline-flex items-center text-blue-600 dark:text-blue-500 hover:text-blue-700 dark:hover:text-blue-400 text-sm font-medium group/link"
                 >
                   View Details
-                  <ArrowRightIcon className="ml-2 h-4 w-4" />
+                  <ArrowRightIcon className="ml-2 h-4 w-4 transform transition-transform group-hover/link:translate-x-1" />
                 </a>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Company Logo Carousel */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
+          className="mt-16 mb-16 bg-slate-50 dark:bg-slate-800 py-10 px-4 rounded-xl shadow-lg border border-slate-100 dark:border-slate-700 overflow-visible"
+        >
+          <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 text-center">
+            Trusted by Leading Organizations
+          </h3>
+          <LogoCarousel />
+        </motion.div>
 
         {/* CTA */}
         <motion.div
