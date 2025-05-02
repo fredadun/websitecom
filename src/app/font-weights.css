@@ -1,36 +1,173 @@
-/* Font weight adjustments */
+/* Enhanced Typography System */
+
+/* Base font settings */
+body {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Font weight refinements */
 .font-bold {
-  font-weight: 600 !important; /* Reduce from 700 to 600 */
+  font-weight: 600 !important; /* Refined from 700 to 600 */
 }
 
 .font-semibold {
-  font-weight: 500 !important; /* Reduce from 600 to 500 */
+  font-weight: 500 !important; /* Refined from 600 to 500 */
 }
 
+.font-medium {
+  font-weight: 500 !important;
+}
+
+.font-normal {
+  font-weight: 400 !important;
+}
+
+.font-light {
+  font-weight: 300 !important;
+}
+
+/* Heading typography */
 h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+h1 {
+  font-weight: 600 !important;
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  font-weight: 600 !important;
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  font-weight: 500 !important;
+  letter-spacing: -0.015em;
+}
+
+h4, h5, h6 {
   font-weight: 500 !important;
   letter-spacing: -0.01em;
 }
 
-/* Specific adjustments for headings */
-h1.text-4xl, h1.text-5xl, h1.text-6xl {
-  font-weight: 500 !important;
-  letter-spacing: -0.02em;
+/* Display text (large headings) */
+.text-display-2xl, .text-5xl, .text-6xl {
+  font-weight: 600 !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.15 !important;
 }
 
-/* Make paragraph text slightly lighter */
+.text-display-xl, .text-4xl {
+  font-weight: 600 !important;
+  letter-spacing: -0.025em !important;
+  line-height: 1.15 !important;
+}
+
+.text-display-lg, .text-3xl {
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.2 !important;
+}
+
+.text-display-md, .text-2xl {
+  font-weight: 500 !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.25 !important;
+}
+
+/* Paragraph text */
 p {
   font-weight: 400 !important;
+  line-height: 1.75 !important;
+  margin-bottom: 1.5em;
 }
 
-/* Adjust navigation and buttons to be slightly lighter */
+/* Small text */
+.text-sm {
+  line-height: 1.5 !important;
+}
+
+.text-xs {
+  line-height: 1.4 !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* Navigation and buttons */
 nav a, button {
   font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
 }
 
-/* Make the overall font slightly thinner */
-body {
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Links */
+a {
+  font-weight: 500 !important;
+  text-underline-offset: 2px;
+}
+
+/* List items */
+li {
+  line-height: 1.75 !important;
+  margin-bottom: 0.5em;
+}
+
+/* Blockquotes */
+blockquote {
+  font-style: normal !important;
+  font-weight: 400 !important;
+  line-height: 1.75 !important;
+  letter-spacing: -0.01em !important;
+  border-left-width: 3px !important;
+  padding-left: 1.5rem !important;
+}
+
+/* Code blocks */
+code, pre {
+  font-family: var(--font-mono) !important;
+  font-size: 0.9em !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Form elements */
+input, textarea, select {
+  font-weight: 400 !important;
+  line-height: 1.5 !important;
+}
+
+/* Captions and metadata */
+.text-caption, figcaption {
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0.01em !important;
+  font-weight: 400 !important;
+  color: #64748b !important;
+}
+
+/* Responsive typography adjustments */
+@media (max-width: 640px) {
+  body {
+    font-size: 15px;
+  }
+  
+  h1 {
+    font-size: 2rem !important;
+  }
+  
+  h2 {
+    font-size: 1.75rem !important;
+  }
+  
+  h3 {
+    font-size: 1.5rem !important;
+  }
+  
+  h4 {
+    font-size: 1.25rem !important;
+  }
 }

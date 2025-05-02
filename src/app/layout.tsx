@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Roboto_Mono } from "next/font/google";
+import { Inter, Roboto_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import "./font-weights.css";
 import "./theme.css";
@@ -11,6 +11,14 @@ const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-display",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 const robotoMono = Roboto_Mono({
@@ -81,7 +89,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#2563EB" />
         <meta name="msapplication-TileColor" content="#2563EB" />
       </head>
-      <body className={`${inter.variable} ${robotoMono.variable} antialiased`}>
+      <body className={`${inter.variable} ${robotoMono.variable} ${plusJakarta.variable} antialiased`}>
         <Providers>
           {children}
           <StructuredData />
