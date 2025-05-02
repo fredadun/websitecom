@@ -83,7 +83,7 @@ export const Hero = () => {
             transition={{ duration: 0.5 }} 
             className="relative"
           >
-            <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-blue-100 to-slate-100 dark:from-slate-800 dark:to-slate-700 relative">
+            <div className="aspect-square rounded-2xl overflow-hidden bg-transparent relative">
               <Image 
                 src="/images/hero/fred-profile.png" 
                 alt="Fred Adun - AI Solutions Architect" 
@@ -92,7 +92,7 @@ export const Hero = () => {
                 priority
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" data-component-name="Hero" />
+              <div className="absolute inset-0" data-component-name="Hero" />
             </div>
             <div className="absolute -bottom-6 -left-6 bg-white dark:bg-slate-800 rounded-xl shadow-lg p-4 flex items-center gap-4">
               <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
