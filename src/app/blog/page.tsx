@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 
 import Layout from '../../components/layout/layout';
+import NewsletterSignup from '../../components/ui/newsletter-signup';
 
 type Category = 'all' | 'dynamics-365' | 'azure' | 'power-platform' | 'integration' | 'solution-design' | 'implementation' | 'ai' | 'leadership';
 
@@ -359,29 +360,13 @@ const BlogPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-gradient-to-br from-blue-50 to-slate-50 dark:from-blue-900/20 dark:to-slate-800 rounded-xl p-8 text-center mb-16"
+            className="mb-16"
           >
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-              Stay Updated
-            </h2>
-            <p className="text-slate-600 dark:text-slate-300 mb-6">
-              Subscribe to receive notifications when new articles are published
-            </p>
-            <form className="max-w-md mx-auto">
-              <div className="flex gap-4">
-                <input 
-                  type="email" 
-                  placeholder="Enter your email" 
-                  className="flex-1 px-4 py-2 border border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                />
-                <button 
-                  type="submit" 
-                  className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                >
-                  Subscribe
-                </button>
-              </div>
-            </form>
+            <NewsletterSignup 
+              title="Stay Updated"
+              description="Subscribe to receive notifications when new articles on Microsoft technologies, AI integration, and digital transformation are published."
+              className="max-w-3xl mx-auto"
+            />
           </motion.div>
 
           {/* Suggest Topic CTA */}

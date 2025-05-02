@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 
 import Layout from '../../../components/layout/layout';
+import NewsletterSignup from '../../../components/ui/newsletter-signup';
 
 // Define the page component
 export default function BlogPostPage() {
@@ -199,6 +200,15 @@ export default function BlogPostPage() {
             </button>
           </div>
           
+          {/* Newsletter Signup */}
+          <div className="mt-16 mb-16">
+            <NewsletterSignup 
+              variant="blog"
+              title="Enjoyed this article?"
+              description="Subscribe to receive notifications when new articles on Microsoft technologies, AI integration, and digital transformation are published."
+            />
+          </div>
+          
           {/* Related Posts */}
           {post.relatedPosts && post.relatedPosts.length > 0 && (
             <div className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-700">
@@ -350,253 +360,3 @@ const blogPosts = [
   },
   // Additional blog posts would be defined here
 ];
-
-// Client component to render the blog post
-function BlogPostClient({ post }: { post: typeof blogPosts[0] }) {
-  return (
-    <Layout>
-      <article className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto">
-          {/* Breadcrumb */}
-          <div className="mb-8">
-            <Link href="/blog" className="inline-flex items-center text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
-              <ArrowLeftIcon className="h-4 w-4 mr-2" />
-              Back to Blog
-            </Link>
-          </div>
-          
-          {/* Header */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-12"
-          >
-            <div className="mb-6">
-              {post.categories.map((category, index) => (
-                <span 
-                  key={index} 
-                  className="inline-block px-3 py-1 mr-2 mb-2 text-sm bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full"
-                >
-                  {category}
-                </span>
-              ))}
-            </div>
-            
-            <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-6">
-              {post.title}
-            </h1>
-            
-            <div className="flex items-center mb-8">
-              <div className="mr-4 h-12 w-12 relative rounded-full overflow-hidden">
-                <Image 
-                  src={post.author.image}
-                  alt={post.author.name}
-                  fill
-                  sizes="48px"
-                  className="object-cover"
-                />
-              </div>
-              <div>
-                <div className="font-medium text-slate-900 dark:text-white">
-                  {post.author.name}
-                </div>
-                <div className="text-sm text-slate-500 dark:text-slate-400">
-                  {post.author.role}
-                </div>
-              </div>
-            </div>
-            
-            <div className="flex flex-wrap items-center text-slate-500 dark:text-slate-400 mb-8">
-              <span className="flex items-center mr-6 mb-2">
-                <CalendarIcon className="h-4 w-4 mr-2" />
-                {post.date}
-              </span>
-              <span className="flex items-center mb-2">
-                <ClockIcon className="h-4 w-4 mr-2" />
-                {post.readingTime}
-              </span>
-            </div>
-          </motion.div>
-          
-          {/* Cover Image */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mb-12 relative h-80 w-full rounded-xl overflow-hidden"
-          >
-            <Image 
-              src={post.coverImage}
-              alt={post.title}
-              fill
-              className="object-cover"
-            />
-          </motion.div>
-          
-          {/* Content */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="prose prose-lg max-w-none dark:prose-invert mb-12"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
-          
-          {/* Article Actions */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex items-center justify-between py-6 border-t border-b border-slate-200 dark:border-slate-700 mb-12"
-          >
-            <div className="flex space-x-4">
-              <button className="flex items-center text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400">
-                <ThumbsUpIcon className="h-5 w-5 mr-2" />
-                Like
-              </button>
-              <button className="flex items-center text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400">
-                <BookmarkIcon className="h-5 w-5 mr-2" />
-                Save
-              </button>
-              <button className="flex items-center text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400">
-                <MessageSquareIcon className="h-5 w-5 mr-2" />
-                Comment
-              </button>
-            </div>
-            <div className="flex space-x-4">
-              <a 
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://fredadun.com/blog/${post.slug}`)}`} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-slate-500 hover:text-blue-500 dark:text-slate-400 dark:hover:text-blue-400"
-              >
-                <TwitterIcon className="h-5 w-5" />
-              </a>
-              <a 
-                href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(`https://fredadun.com/blog/${post.slug}`)}&title=${encodeURIComponent(post.title)}`} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-slate-500 hover:text-blue-700 dark:text-slate-400 dark:hover:text-blue-300"
-              >
-                <LinkedinIcon className="h-5 w-5" />
-              </a>
-            </div>
-          </motion.div>
-          
-          {/* Author Bio */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="bg-slate-50 dark:bg-slate-800 rounded-xl p-6 mb-12"
-          >
-            <div className="flex items-center mb-4">
-              <div className="mr-4 h-16 w-16 relative rounded-full overflow-hidden">
-                <Image 
-                  src={post.author.image}
-                  alt={post.author.name}
-                  fill
-                  sizes="48px"
-                  className="object-cover"
-                />
-              </div>
-              <div>
-                <div className="font-bold text-lg text-slate-900 dark:text-white">
-                  About {post.author.name}
-                </div>
-                <div className="text-slate-600 dark:text-slate-300">
-                  {post.author.role}
-                </div>
-              </div>
-            </div>
-            <p className="text-slate-600 dark:text-slate-300">
-              Fred Adun is a Microsoft Solutions Architect with over 12 years of experience designing and implementing enterprise solutions. 
-              He specializes in Dynamics 365, Azure cloud services, and Power Platform, with a focus on AI-powered implementations.
-            </p>
-            <div className="mt-4">
-              <Link 
-                href="/about" 
-                className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
-              >
-                Learn more about Fred
-              </Link>
-            </div>
-          </motion.div>
-          
-          {/* Related Posts */}
-          {post.relatedPosts && post.relatedPosts.length > 0 && (
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="mb-12"
-            >
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-                Related Articles
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {post.relatedPosts.map((relatedPost, index) => (
-                  <Link 
-                    key={index} 
-                    href={`/blog/${relatedPost.slug}`}
-                    className="group"
-                  >
-                    <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden h-full flex flex-col">
-                      <div className="relative h-48 w-full">
-                        <Image 
-                          src={relatedPost.image}
-                          alt={relatedPost.title}
-                          fill
-                          className="object-cover transition-transform group-hover:scale-105"
-                        />
-                      </div>
-                      <div className="p-6 flex-grow">
-                        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                          {relatedPost.title}
-                        </h3>
-                        <p className="text-slate-600 dark:text-slate-300">
-                          {relatedPost.excerpt}
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </motion.div>
-          )}
-          
-          {/* Newsletter */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.7 }}
-            className="bg-gradient-to-br from-blue-50 to-slate-50 dark:from-blue-900/20 dark:to-slate-800 rounded-xl p-8 text-center"
-          >
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
-              Enjoyed this article?
-            </h2>
-            <p className="text-slate-600 dark:text-slate-300 mb-6">
-              Subscribe to receive notifications when new articles are published
-            </p>
-            <form className="max-w-md mx-auto">
-              <div className="flex gap-4">
-                <input 
-                  type="email" 
-                  placeholder="Enter your email" 
-                  className="flex-1 px-4 py-2 border border-slate-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                />
-                <button 
-                  type="submit" 
-                  className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                >
-                  Subscribe
-                </button>
-              </div>
-            </form>
-          </motion.div>
-        </div>
-      </article>
-    </Layout>
-  );
-}
