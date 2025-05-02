@@ -44,6 +44,14 @@ next-env.d.ts
 # Logs
 logs
 *.log
+
+# Task Master and development tools
+.cursor/
+.windsurfrules
+README-task-master.md
+.cursor.json
+tasks/
+.vscode/
 dev-debug.log
 # Dependency directories
 node_modules/
